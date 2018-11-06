@@ -1,3 +1,18 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+#test
+test:
+  path: /test
+  controller: App\Controller\DefaultController::test
+
+#Création utilisateur
+createUser:
+  path: /user/create
+  controller: App\Controller\UserController::createUser
+
+#Formulaire création utilisateur
+formCreateUser:
+  path: /user/create/form
+  controller: App\Controller\UserController::formCreateUser
