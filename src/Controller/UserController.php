@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
+    //Création du l'utilisateur
     public function createUser (request $request) {
         $manager = $this->get('doctrine.orm.entity_manager');
         $roleRepository = $manager->getRepository('App:Role');
@@ -31,6 +32,7 @@ class UserController extends Controller
         return $this->render('success.html.twig');
     }
 
+    //Formulaire de création de l'utilisateur
     public function formCreateUser () {
         $manager = $this->get('doctrine.orm.entity_manager');
         $repository = $manager->getRepository('App:Role');

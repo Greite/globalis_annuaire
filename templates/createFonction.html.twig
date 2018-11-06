@@ -1,0 +1,9 @@
+{% include 'base.html.twig' %}
+
+<form action="{{ path('createFonction') }}" method="POST" class="col-6">
+    <div class="form-group">
+        <label for="libelle">Libellé de la fonction : *</label>
+        <input type="text" class="form-control" id="libelle" name="libelle" placeholder="Libellé de la fonction">
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>

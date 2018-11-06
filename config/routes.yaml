@@ -16,3 +16,13 @@ createUser:
 formCreateUser:
   path: /user/create/form
   controller: App\Controller\UserController::formCreateUser
+
+#Création fonction
+createFonction:
+  path: /fonction/create
+  controller: App\Controller\FonctionController::createFonction
+
+#Formulaire création fonction
+formCreateFonction:
+  path: /fonction/create/form
+  controller: App\Controller\FonctionController::formCreateFonction
