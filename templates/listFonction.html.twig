@@ -10,6 +10,11 @@
     {% for fonction in fonctions %}
         <div class="row">
             <div class="col border border-dark">{{ fonction.title }}</div>
+            {% if fonction.archived %}
+                <a href="{{ path('archiveFonction', {'id': fonction.id}) }}"><i class="fas fa-external-link-square-alt"></i></a>
+            {% else %}
+                <a href="{{ path('archiveFonction', {'id': fonction.id}) }}"><i class="fas fa-trash-alt"></i></a>
+            {% endif %}
         </div>
     {% endfor %}
 </div>

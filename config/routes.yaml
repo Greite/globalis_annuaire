@@ -22,6 +22,11 @@ listUser:
   path: /user/list
   controller: App\Controller\UserController::listUser
 
+#Liste utilisateurs
+deleteUser:
+  path: /user/delete/{id}
+  controller: App\Controller\UserController::deleteUser
+
 #Connexion
 connexion:
   path: /connexion
@@ -51,3 +56,8 @@ formCreateFonction:
 listFonction:
   path: /fonction/list
   controller: App\Controller\FonctionController::listFonction
+
+#Archive fonction
+archiveFonction:
+  path: /fonction/archive/{id}
+  controller: App\Controller\FonctionController::archiveFonction

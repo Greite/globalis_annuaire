@@ -36,4 +36,15 @@ class FonctionController extends Controller
         $fonctions = $repository->findAll();
         return $this->render('listFonction.html.twig', array('fonctions' => $fonctions));
     }
+
+    //Archive une fonction ou l'inverse
+    public function archiveFonction (request $request, $id) {
+        $manager = $this->get('doctrine.orm.entity_manager');
+        $repository = $manager->getRepository('App:Fonction');
+        $fonction = $repository->findOneById($id);
+        $fonction->setArchived(!$fonction->getArchived());
+        $manager->persist($fonction);
+        $manager->flush();
+        return $this->redirectToRoute('listFonction');
+    }
 }

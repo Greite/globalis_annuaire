@@ -15,8 +15,6 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class UserController extends Controller
 {
-    //Secret token JWT
-    private $secret = "$2a$07$0n2qqAiTqFDRjL1I9aNNNOqsZeP/SXMDUt8oouRsxVD0AtAMi3FIC";
 
     //Création du l'utilisateur
     public function createUser (request $request) {
@@ -51,6 +49,16 @@ class UserController extends Controller
             $roles = $roleRepository->findAll();
             return $this->render('createUser.html.twig', array('roles' => $roles, 'message' => 'Veuillez remplir tous les champss'));
         }
+    }
+
+    //Supprime un utilisateur
+    public function deleteUser (request $request, $id) {
+        $manager = $this->get('doctrine.orm.entity_manager');
+        $repository = $manager->getRepository('App:User');
+        $user = $repository->findOneById($id);
+        $manager->remove($user);
+        $manager->flush();
+        return $this->redirectToRoute('listUser');
     }
 
     //Formulaire de création de l'utilisateur
