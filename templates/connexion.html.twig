@@ -1,0 +1,22 @@
+{% include 'base.html.twig' %}
+
+<form action="{{ path('connexion') }}" method="POST" class="container">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+    </div>
+    <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe">
+    </div>
+    <button type="submit" class="btn btn-primary">Connexion</button>
+</form>
+
+{% if failed %}
+    <hr>
+    <div class="container">
+        <div class="alert alert-danger" role="alert">
+            Utilisateur ou mot de passe incorrect !
+        </div>
+    </div>
+{% endif %}

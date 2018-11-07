@@ -28,4 +28,12 @@ class FonctionController extends Controller
     public function formCreateFonction () {
         return $this->render('createFonction.html.twig');
     }
+
+    //Liste des fonctions
+    public function listFonction () {
+        $manager = $this->get('doctrine.orm.entity_manager');
+        $repository = $manager->getRepository('App:Fonction');
+        $fonctions = $repository->findAll();
+        return $this->render('listFonction.html.twig', array('fonctions' => $fonctions));
+    }
 }

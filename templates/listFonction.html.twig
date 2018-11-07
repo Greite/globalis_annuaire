@@ -1,0 +1,12 @@
+{% include 'base.html.twig' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col border border-primary">Libellé</div>
+    </div>
+    {% for fonction in fonctions %}
+        <div class="row">
+            <div class="col border border-dark">{{ fonction.title }}</div>
+        </div>
+    {% endfor %}
+</div>

@@ -17,6 +17,21 @@ formCreateUser:
   path: /user/create/form
   controller: App\Controller\UserController::formCreateUser
 
+#Liste utilisateurs
+listUser:
+  path: /user/list
+  controller: App\Controller\UserController::listUser
+
+#Connexion
+connexion:
+  path: /connexion
+  controller: App\Controller\UserController::connexion
+
+#Formulaire connexion
+formConnexion:
+  path: /connexion/form
+  controller: App\Controller\UserController::formConnexion
+
 #Création fonction
 createFonction:
   path: /fonction/create
@@ -26,3 +41,8 @@ createFonction:
 formCreateFonction:
   path: /fonction/create/form
   controller: App\Controller\FonctionController::formCreateFonction
+
+#Liste fonctions
+listFonction:
+  path: /fonction/list
+  controller: App\Controller\FonctionController::listFonction
