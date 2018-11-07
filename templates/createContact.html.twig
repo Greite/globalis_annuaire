@@ -1,0 +1,153 @@
+{% include 'base.html.twig' %}
+
+<div class="container">
+    <div class="jumbotron">
+        <p class="lead">Général</p>
+        <form method="POST" class="container">
+            <div class="row">
+                <div class="form-group col">
+                    <p>Afficher les contacts archivés : </p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="civilite" id="m" value="m">
+                        <label class="form-check-label" for="m">M</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="civilite" id="mme" value="mme">
+                        <label class="form-check-label" for="mme">Mme</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="civilite" id="melle" value="melle">
+                        <label class="form-check-label" for="melle">Melle</label>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label for="nom">Nom : </label>
+                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="prenom">Prénom : </label>
+                    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom">
+                </div>
+                <div class="form-group col">
+                    <label for="phone">Téléphone : </label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Téléphone du contact">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="birthdate">Date de naissance : </label>
+                    <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="JJ/MM/AAAA">
+                </div>
+                <div class="form-group col">
+                    <label for="mobile">Téléphone mobile : </label>
+                    <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Téléphone portable">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="email">Adresse email : </label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Adresse email">
+                </div>
+            </div>
+            <hr class="my-4">
+            <p class="lead">Employeur</p>
+            <div class="row">
+                <div class="form-group col">
+                    <p>Décideur : *</p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="decideur" id="yes" value="1">
+                        <label class="form-check-label" for="yes">Oui</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="decideur" id="no" value="0">
+                        <label class="form-check-label" for="no">Non</label>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label for="societe">Société : *</label>
+                    <input type="text" class="form-control" id="societe" name="societe" placeholder="Société du contact">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="fonction">Fonction : *</label>
+                    <select class="form-control" id="role" name="role">
+                        {% for fonction in fonctions %}
+                            <option value="{{ fonction.id }}">{{ fonction.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col">
+                    <label for="societedate">Date d'entrée dans la société : </label>
+                    <input type="date" class="form-control" id="societedate" name="societedate" placeholder="JJ/MM/AAAA">
+                </div>
+            </div>
+            <p class="lead">Adresse</p>
+            <div class="row">
+                <div class="form-group col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="french" id="france" value="1">
+                        <label class="form-check-label" for="yes">France</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="french" id="etranger" value="0">
+                        <label class="form-check-label" for="no">Étranger</label>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="pays" name="pays" placeholder="Pays">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="address1" name="address1" placeholder="Appartement - Étage - Couloir - Escalier">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="address2" name="address2" placeholder="Entrée - Bâtiment - Immeuble - Résidence">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="address3" name="address3" placeholder="Numéro et libellé de la voie">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="address4" name="address4" placeholder="Service particulier de livraison - Lieu dit - Mention spéciale">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="postal" name="postal" placeholder="Code postal">
+                </div>
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Ville">
+                </div>
+            </div>
+            <hr class="my-4">
+            <p class="lead">Divers</p>
+            <div class="row">
+                <div class="input-group col">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="commentaire">Commentaire : </label>
+                    <textarea type="text" class="form-control" id="commentaire" name="commentaire" placeholder="Commentaire"></textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
+    </div>
+</div>

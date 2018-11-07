@@ -61,3 +61,13 @@ listFonction:
 archiveFonction:
   path: /fonction/archive/{id}
   controller: App\Controller\FonctionController::archiveFonction
+
+#Liste annuaire
+listAnnuaire:
+  path: /annuaire/list
+  controller: App\Controller\AnnuaireController::listAnnuaire
+
+#Formulaire création contact
+formCreateContact:
+  path: /annuaire/create/form
+  controller: App\Controller\AnnuaireController::formCreateContact
