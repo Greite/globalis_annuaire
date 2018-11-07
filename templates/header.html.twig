@@ -1,17 +1,36 @@
-<header class="container">
-    <div class="row">
-        <div class="col"><img class="rounded" src="{{ asset('assets/img/globalis-logo.png') }}" width="250" alt="globalis logo" /></div>
-        <div class="col text-center"><a href="{{ path('test') }}">Annuaires</a></div>
-        <div class="col text-center"><a href="{{ path('listUser') }}">Utilisateurs</a></div>
-        <div class="col text-center"><a href="{{ path('listFonction') }}">Fonctions</a></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand">
+        <img src="{{ asset('assets/img/globalis-logo.png') }}" height="30" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('test') }}">Annuaires</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('listUser') }}">Utilisateurs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('listFonction') }}">Fonctions</a>
+            </li>
+            {% if app.session.get('user') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('deconnexion') }}">Déconnexion</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('formConnexion') }}">Connexion</a>
+                </li>
+            {% endif %}
+        </ul>
         {% if app.session.get('user') %}
-            <div class="col text-center">
+            <span class="navbar-text text-center">
                 {{ app.session.get('user').prenom }} {{ app.session.get('user').nom }}<br>
-                {{ app.session.get('user').role }}<br>
-                <a href="{{ path('deconnexion') }}">Deconnexion</a>
-            </div>
-        {% else %}
-            <div class="col text-center"><a href="{{ path('formConnexion') }}">Connexion</a></div>
+               {{ app.session.get('user').role }}
+            </span>
         {% endif %}
     </div>
-</header>
+</nav>

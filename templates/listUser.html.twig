@@ -1,21 +1,62 @@
 {% include 'base.html.twig' %}
 
 <div class="container">
-    <div class="row">
-        <a href="{{ path('formCreateUser') }}">Créer un utilisateur</a>
+    <div class="jumbotron">
+        <form method="POST" class="container">
+            <div class="row">
+                <div class="form-group col">
+                    <label for="nom">Nom : *</label>
+                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom">
+                </div>
+                <div class="form-group col">
+                    <label for="penom">Prénom(s) : *</label>
+                    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom">
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="form-group col">
+                    <p>Afficher les utilisateus actifs : </p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="activeUser" id="yes" value="1" checked>
+                        <label class="form-check-label" for="yes">Oui</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="activeUser" id="no" value="0">
+                        <label class="form-check-label" for="no">Non</label>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label for="nom">Rôle : </label>
+                    <input type="text" class="form-control" id="role" name="role" placeholder="Role">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Filtrer</button>
+        </form>
     </div>
-    <div class="row">
-        <div class="col border border-primary text-center">Nom</div>
-        <div class="col border border-primary text-center">Prénom</div>
-        <div class="col border border-primary text-center">Rôle</div>
-    </div>
-    {% for user in users %}
-        <div class="row">
-            <div class="col border border-dark">{{ user.nom }}</div>
-            <div class="col border border-dark">{{ user.prenom }}</div>
-            <div class="col border border-dark">{{ user.role.title }}</div>
-            
-            <a href="{{ path('deleteUser', {'id': user.id}) }}"><i class="fas fa-trash-alt"></i></a>
-        </div>
-    {% endfor %}
+    <hr>
+    <a href="{{ path('formCreateUser') }}">
+        <button type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Créer un utilisateur</button>
+    </a>
+    <hr>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Rôle</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.role.title }}</td>
+                <td><a href="{{ path('deleteUser', {'id': user.id}) }}"><i class="fas fa-trash-alt"></i></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
