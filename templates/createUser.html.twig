@@ -1,5 +1,5 @@
 {% include 'base.html.twig' %}
-<form action="{{ path('createUser') }}" method="POST" class="col-6">
+<form action="{{ path('createUser') }}" method="POST" class="container">
     <div class="form-group">
         <label for="username">Identifiant : *</label>
         <input type="text" class="form-control" id="username" name="username" placeholder="Username">
@@ -30,3 +30,12 @@
     </div>
     <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>
+
+{% if message is defined %}
+    <hr>
+    <div class="container">
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    </div>
+{% endif %}

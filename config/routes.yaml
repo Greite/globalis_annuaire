@@ -27,6 +27,11 @@ connexion:
   path: /connexion
   controller: App\Controller\UserController::connexion
 
+#Deconnexion
+deconnexion:
+  path: /deconnexion
+  controller: App\Controller\UserController::deconnexion
+
 #Formulaire connexion
 formConnexion:
   path: /connexion/form

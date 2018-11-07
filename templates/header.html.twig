@@ -4,6 +4,14 @@
         <div class="col text-center"><a href="{{ path('test') }}">Annuaires</a></div>
         <div class="col text-center"><a href="{{ path('listUser') }}">Utilisateurs</a></div>
         <div class="col text-center"><a href="{{ path('listFonction') }}">Fonctions</a></div>
-        <div class="col text-center"><a href="{{ path('formConnexion') }}">Connexion</a></div>
+        {% if app.session.get('user') %}
+            <div class="col text-center">
+                {{ app.session.get('user').prenom }} {{ app.session.get('user').nom }}<br>
+                {{ app.session.get('user').role }}<br>
+                <a href="{{ path('deconnexion') }}">Deconnexion</a>
+            </div>
+        {% else %}
+            <div class="col text-center"><a href="{{ path('formConnexion') }}">Connexion</a></div>
+        {% endif %}
     </div>
 </header>
