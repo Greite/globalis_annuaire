@@ -36,27 +36,16 @@ class FonctionController extends Controller
         if ($request->request->all() != []) {
             $archived = $request->get('archived');
             $title = $request->get('libelle');
+            $qb = $repository->createQueryBuilder('f');
             if (!$archived) {
-                if ($title != '') {
-                    $qb = $repository->createQueryBuilder('f');
-                    $qb->where('f.archived = 0')
-                        ->andWhere('f.title LIKE :title')
-                        ->setParameter('title', '%'.$title.'%');
-                    $query = $qb->getQuery();
-                    $fonctions = $query->getResult();
-                }else {
-                    $fonctions = $repository->findByArchived(false);
-                }
-            }elseif ($archived) {
-                if ($title != '') {
-                    $qb = $repository->createQueryBuilder('f');
-                    $qb->where('f.title LIKE :title')->setParameter('title', '%'.$title.'%');
-                    $query = $qb->getQuery();
-                    $fonctions = $query->getResult();
-                }else {
-                    $fonctions = $repository->findAll();
-                }
+                $qb->andWhere('f.archived = 0');
             }
+            if ($title != '') {
+                $qb->andWhere('f.title LIKE :title');
+                $qb->setParameter('title', '%'.$title.'%');
+            }
+            $query = $qb->getQuery();
+            $fonctions = $query->getResult();
         }else{
             $fonctions = $repository->findAll();
         }

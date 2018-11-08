@@ -65,10 +65,31 @@ class AnnuaireController extends Controller
     }
 
     //Liste des contacts
-    public function listAnnuaire () {
+    public function listAnnuaire (request $request) {
         $manager = $this->get('doctrine.orm.entity_manager');
         $repository = $manager->getRepository('App:Contact');
-        $contacts = $repository->findAll();
+        if ($request->request->all() != []) {
+            $qb = $repository->createQueryBuilder('c');
+            if ($request->get('nom') != '') {
+                $qb->andWhere('c.nom LIKE :nom');
+                $qb->setParameter('nom', '%'.$request->get('nom').'%');
+            }
+            if ($request->get('prenom') != '') {
+                $qb->andWhere('c.prenom LIKE :prenom');
+                $qb->setParameter('prenom', '%'.$request->get('prenom').'%');
+            }
+            if (!$request->get('archivedContact')) {
+                $qb->andWhere('c.archived = 0');
+            }
+            if ($request->get('phone') != '') {
+                $qb->andWhere('c.telephone LIKE :telephone');
+                $qb->setParameter('telephone', '%'.$request->get('phone').'%');
+            }
+            $query = $qb->getQuery();
+            $contacts = $query->getResult();
+        }else {
+            $contacts = $repository->findAll();
+        }
         return $this->render('listAnnuaire.html.twig', array('contacts' => $contacts));
     }
 

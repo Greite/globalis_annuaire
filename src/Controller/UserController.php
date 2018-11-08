@@ -70,10 +70,30 @@ class UserController extends Controller
     }
 
     //Liste des utilisateurs
-    public function listUser () {
+    public function listUser (request $request) {
         $manager = $this->get('doctrine.orm.entity_manager');
         $repository = $manager->getRepository('App:User');
-        $users = $repository->findAll();
+        if ($request->request->all() != []) {
+            $qb = $repository->createQueryBuilder('u');
+            if ($request->get('nom') != '') {
+                $qb->andWhere('u.nom LIKE :nom');
+                $qb->setParameter('nom', '%'.$request->get('nom').'%');
+            }
+            if ($request->get('prenom') != '') {
+                $qb->andWhere('u.prenom LIKE :prenom');
+                $qb->setParameter('prenom', '%'.$request->get('prenom').'%');
+            }
+            if ($request->get('role') != '') {
+                $roleRepository = $manager->getRepository('App:Role');
+                $role = $roleRepository->findOneByTitle($request->get('role'));
+                $qb->andWhere('u.role = :role');
+                $qb->setParameter('role', $role);
+            }
+            $query = $qb->getQuery();
+            $users = $query->getResult();
+        }else {
+            $users = $repository->findAll();
+        }
         return $this->render('listUser.html.twig', array('users' => $users));
     }
 
