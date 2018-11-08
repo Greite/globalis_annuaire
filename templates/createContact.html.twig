@@ -3,10 +3,10 @@
 <div class="container">
     <div class="jumbotron">
         <p class="lead">Général</p>
-        <form method="POST" class="container">
+        <form method="POST" action="{{ path('createContact') }}" class="container">
             <div class="row">
                 <div class="form-group col">
-                    <p>Afficher les contacts archivés : </p>
+                    <p>Civilité : *</p>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="civilite" id="m" value="m">
                         <label class="form-check-label" for="m">M</label>
@@ -21,13 +21,13 @@
                     </div>
                 </div>
                 <div class="form-group col">
-                    <label for="nom">Nom : </label>
+                    <label for="nom">Nom : *</label>
                     <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <label for="prenom">Prénom : </label>
+                    <label for="prenom">Prénom : *</label>
                     <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom">
                 </div>
                 <div class="form-group col">
@@ -73,7 +73,7 @@
             <div class="row">
                 <div class="form-group col">
                     <label for="fonction">Fonction : *</label>
-                    <select class="form-control" id="role" name="role">
+                    <select class="form-control" id="fonction" name="fonction">
                         {% for fonction in fonctions %}
                             <option value="{{ fonction.id }}">{{ fonction.title }}</option>
                         {% endfor %}
@@ -84,15 +84,15 @@
                     <input type="date" class="form-control" id="societedate" name="societedate" placeholder="JJ/MM/AAAA">
                 </div>
             </div>
-            <p class="lead">Adresse</p>
+            <p class="lead">Adresse : *</p>
             <div class="row">
                 <div class="form-group col">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="french" id="france" value="1">
+                        <input class="form-check-input" type="radio" name="etranger" id="france" value="0">
                         <label class="form-check-label" for="yes">France</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="french" id="etranger" value="0">
+                        <input class="form-check-input" type="radio" name="etranger" id="etranger" value="1">
                         <label class="form-check-label" for="no">Étranger</label>
                     </div>
                 </div>

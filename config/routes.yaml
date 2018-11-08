@@ -71,3 +71,8 @@ listAnnuaire:
 formCreateContact:
   path: /annuaire/create/form
   controller: App\Controller\AnnuaireController::formCreateContact
+
+#Création contact
+createContact:
+  path: /contact/create
+  controller: App\Controller\AnnuaireController::createContact
