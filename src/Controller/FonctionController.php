@@ -30,15 +30,41 @@ class FonctionController extends Controller
     }
 
     //Liste des fonctions
-    public function listFonction () {
+    public function listFonction (request $request) {
         $manager = $this->get('doctrine.orm.entity_manager');
         $repository = $manager->getRepository('App:Fonction');
-        $fonctions = $repository->findAll();
+        if ($request->request->all() != []) {
+            $archived = $request->get('archived');
+            $title = $request->get('libelle');
+            if (!$archived) {
+                if ($title != '') {
+                    $qb = $repository->createQueryBuilder('f');
+                    $qb->where('f.archived = 0')
+                        ->andWhere('f.title LIKE :title')
+                        ->setParameter('title', '%'.$title.'%');
+                    $query = $qb->getQuery();
+                    $fonctions = $query->getResult();
+                }else {
+                    $fonctions = $repository->findByArchived(false);
+                }
+            }elseif ($archived) {
+                if ($title != '') {
+                    $qb = $repository->createQueryBuilder('f');
+                    $qb->where('f.title LIKE :title')->setParameter('title', '%'.$title.'%');
+                    $query = $qb->getQuery();
+                    $fonctions = $query->getResult();
+                }else {
+                    $fonctions = $repository->findAll();
+                }
+            }
+        }else{
+            $fonctions = $repository->findAll();
+        }
         return $this->render('listFonction.html.twig', array('fonctions' => $fonctions));
     }
 
     //Archive une fonction ou l'inverse
-    public function archiveFonction (request $request, $id) {
+    public function archiveFonction ($id) {
         $manager = $this->get('doctrine.orm.entity_manager');
         $repository = $manager->getRepository('App:Fonction');
         $fonction = $repository->findOneById($id);

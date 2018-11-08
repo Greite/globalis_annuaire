@@ -52,7 +52,7 @@ class UserController extends Controller
     }
 
     //Supprime un utilisateur
-    public function deleteUser (request $request, $id) {
+    public function deleteUser ($id) {
         $manager = $this->get('doctrine.orm.entity_manager');
         $repository = $manager->getRepository('App:User');
         $user = $repository->findOneById($id);
@@ -97,10 +97,13 @@ class UserController extends Controller
                     'prenom' => $user->getPrenom(),
                     'nom' => $user->getNom(),
                     'password' => $user->getPassword(),
-                    'role' => $user->getRole()->getTitle()
+                    'role' => array(
+                        'id' => $user->getRole()->getId(),
+                        'title' => $user->getRole()->getTitle()
+                    )
                 );
                 $session->set('user', $formattedUser);
-                return $this->redirectToRoute('listUser');
+                return $this->redirectToRoute('listAnnuaire');
             }else {
                 return $this->render('connexion.html.twig', array('failed' => true));
             }

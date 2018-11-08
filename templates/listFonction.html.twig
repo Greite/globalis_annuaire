@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="jumbotron">
-        <form method="POST" class="container">
+        <form method="POST" action="{{ path('listFonction') }}" class="container">
             <div class="row">
                 <div class="form-group col">
                     <label for="libelle">Libellé : </label>
@@ -11,11 +11,11 @@
                 <div class="form-group col">
                     <p>Afficher les libellés archivés : </p>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="archivedLibelle" id="yes" value="1" checked>
+                        <input class="form-check-input" type="radio" name="archived" id="yes" value="1" checked>
                         <label class="form-check-label" for="yes">Oui</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="archivedLibelle" id="no" value="0">
+                        <input class="form-check-input" type="radio" name="archived" id="no" value="0">
                         <label class="form-check-label" for="no">Non</label>
                     </div>
                 </div>
@@ -40,10 +40,14 @@
             <tr>
                 <td>{{ fonction.title }}</td>
                 <td>
-                    {% if fonction.archived %}
-                        <a href="{{ path('archiveFonction', {'id': fonction.id}) }}"><i class="fas fa-external-link-square-alt"></i></a>
+                    {% if app.session.get('user').role.id == 1 %}
+                        {% if fonction.archived %}
+                            <a href="{{ path('archiveFonction', {'id': fonction.id}) }}"><i class="fas fa-external-link-square-alt"></i></a>
+                        {% else %}
+                            <a href="{{ path('archiveFonction', {'id': fonction.id}) }}"><i class="fas fa-trash-alt"></i></a>
+                        {% endif %}
                     {% else %}
-                        <a href="{{ path('archiveFonction', {'id': fonction.id}) }}"><i class="fas fa-trash-alt"></i></a>
+                        Aucunes actions disponible
                     {% endif %}
                 </td>
             </tr>

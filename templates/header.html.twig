@@ -29,7 +29,7 @@
         {% if app.session.get('user') %}
             <span class="navbar-text text-center">
                 {{ app.session.get('user').prenom }} {{ app.session.get('user').nom }}<br>
-               {{ app.session.get('user').role }}
+               {{ app.session.get('user').role.title }}
             </span>
         {% endif %}
     </div>

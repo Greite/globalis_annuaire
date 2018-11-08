@@ -74,5 +74,15 @@ formCreateContact:
 
 #Création contact
 createContact:
-  path: /contact/create
+  path: /annuaire/create
   controller: App\Controller\AnnuaireController::createContact
+
+#Détails contact
+showContact:
+  path: /annuaire/show/{id}
+  controller: App\Controller\AnnuaireController::showContact
+
+#Archive contact
+archiveContact:
+  path: /annuaire/archive/{id}
+  controller: App\Controller\AnnuaireController::archiveContact

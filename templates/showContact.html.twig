@@ -1,0 +1,108 @@
+{% include 'base.html.twig' %}
+
+<div class="container">
+    <div class="jumbotron">
+        <p class="lead">Général</p>
+        <div class="row">
+            <div class="col">
+                <p>Civilité :</p>
+                <p>{{ contact.civilite }}</p>
+            </div>
+            <div class="col">
+                <p>Nom :</p>
+                <p>{{ contact.nom | upper }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Prénom :</p>
+                <p>{{ contact.prenom }}</p>
+            </div>
+            <div class="col">
+                <p>Téléphone :</p>
+                {% if contact.telephone != 0 %}
+                    <p>+33 {{ contact.telephone }}</p>
+                {% else %}
+                    <p>Non renseigné</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Date de naissance :</p>
+                {% if contact.birthdate is not null %}
+                    <p>{{ contact.birthdate | date('d/m/Y') }}</p>
+                {% else %}
+                    <p>Non renseigné</p>
+                {% endif %}
+            </div>
+            <div class="col">
+                <p>Téléphone mobile :</p>
+                {% if contact.mobile != 0 %}
+                    <p>+33 {{ contact.mobile }}</p>
+                {% else %}
+                    <p>Non renseigné</p>
+                {% endif %}
+            </div>
+        </div>
+        <hr class="my-4">
+        <p class="lead">Employeur</p>
+        <div class="row">
+            <div class="col">
+                <p>Décideur :</p>
+                {% if contact.societe.decideur %}
+                    <p>Oui</p>
+                {% else %}
+                    <p>Non</p>
+                {% endif %}
+            </div>
+            <div class="col">
+                <p>Société :</p>
+                <p>{{ contact.societe.name }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Fonction :</p>
+                <p>{{ contact.societe.fonction.title }}</p>
+            </div>
+            <div class="col">
+                <p>Date d'entrée dans la société :</p>
+                {% if contact.societe.entersociete is not null %}
+                    <p>{{ contact.societe.entersociete | date('d/m/Y') }}</p>
+                {% else %}
+                    <p>Non renseigné</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Email :</p>
+                <p>{{ contact.email }}</p>
+            </div>
+        </div>
+        <hr class="my-4">
+        <p class="lead">Adresse :</p>
+        <div class="row">
+            <div class="col">
+                <p>{{ contact.societe.address3 }}</p>
+                <p>{{ contact.societe.address1 }}</p>
+                <p>{{ contact.societe.address2 }}</p>
+                <p>{{ contact.societe.address4 }}</p>
+                <p>{{ contact.societe.postal }} {{ contact.societe.ville }}</p>
+            </div>
+        </div>
+        <hr class="my-4">
+        <p class="lead">Divers</p>
+        <div class="row">
+            <div class="col">
+                <p>Commentaire :</p>
+                {% if contact.commentaire != '' %}
+                    <p>{{ contact.commentaire }}</p>
+                {% else %}
+                    <p>Pas de commentaire particulier</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

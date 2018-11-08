@@ -57,6 +57,16 @@ class Contact
      */
     private $societe;
 
+    /**
+     * @ORM\Column(type="string", length=512, nullable=true)
+     */
+    private $commentaire;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $archived = 0;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +164,30 @@ class Contact
     public function setSociete(?Societe $societe): self
     {
         $this->societe = $societe;
+
+        return $this;
+    }
+
+    public function getCommentaire(): ?string
+    {
+        return $this->commentaire;
+    }
+
+    public function setCommentaire(?string $commentaire): self
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    public function getArchived(): ?bool
+    {
+        return $this->archived;
+    }
+
+    public function setArchived(bool $archived): self
+    {
+        $this->archived = $archived;
 
         return $this;
     }

@@ -55,10 +55,16 @@
                 <td>{{ contact.societe.name }}</td>
                 <td>{{ contact.nom }}</td>
                 <td>{{ contact.prenom }}</td>
-                <td>{{ contact.telephone }}</td>
+                <td>+33 {{ contact.telephone }}</td>
                 <td>
-                    <a href="{{ path('test') }}"><i class="fas fa-search"></i></a>
-                    <a href="{{ path('test') }}"><i class="fas fa-trash-alt"></i></a>
+                    <a href="{{ path('showContact', {'id': contact.id}) }}"><i class="fas fa-search"></i></a>
+                    {% if app.session.get('user').role.id == 1 %}
+                        {% if contact.archived %}
+                            <a href="{{ path('archiveContact', {'id': contact.id}) }}"><i class="fas fa-external-link-square-alt"></i></a>
+                        {% else %}
+                            <a href="{{ path('archiveContact', {'id': contact.id}) }}"><i class="fas fa-trash-alt"></i></a>
+                        {% endif %}
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

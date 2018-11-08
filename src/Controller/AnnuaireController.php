@@ -29,6 +29,7 @@ class AnnuaireController extends Controller
         $contact->setBirthdate(new \DateTime($request->get('birthdate')));
         $contact->setMobile(intval($request->get('mobile')));
         $contact->setEmail($request->get('email'));
+        $contact->setCommentaire($request->get('commentaire'));
 
         $societe = new Societe();
         $societe->setDecideur($request->get('decideur'));
@@ -49,7 +50,18 @@ class AnnuaireController extends Controller
         $manager->persist($societe);
         $manager->persist($contact);
         $manager->flush();
-        return $this->render('success.html.twig');
+        return $this->redirectToRoute('listAnnuaire');
+    }
+
+    //Archive un contact ou l'inverse
+    public function archiveContact ($id) {
+        $manager = $this->get('doctrine.orm.entity_manager');
+        $repository = $manager->getRepository('App:Contact');
+        $contact = $repository->findOneById($id);
+        $contact->setArchived(!$contact->getArchived());
+        $manager->persist($contact);
+        $manager->flush();
+        return $this->redirectToRoute('listAnnuaire');
     }
 
     //Liste des contacts
@@ -60,11 +72,19 @@ class AnnuaireController extends Controller
         return $this->render('listAnnuaire.html.twig', array('contacts' => $contacts));
     }
 
+    //Détails d'un contact
+    public function showContact ($id) {
+        $manager = $this->get('doctrine.orm.entity_manager');
+        $repository = $manager->getRepository('App:Contact');
+        $contact = $repository->findOneById($id);
+        return $this->render('showContact.html.twig', array('contact' => $contact));
+    }
+
     //Formulaire de création contact
     public function formCreateContact () {
         $manager = $this->get('doctrine.orm.entity_manager');
         $repository = $manager->getRepository('App:Fonction');
-        $fonctions = $repository->findAll();
+        $fonctions = $repository->findByArchived(false);
         return $this->render('createContact.html.twig', array('fonctions' => $fonctions));
     }
 }
