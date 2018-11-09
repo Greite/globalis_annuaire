@@ -1,4 +1,4 @@
-
+#idndex
 index:
     path: /
     controller: App\Controller\UserController::formConnexion
@@ -82,6 +82,11 @@ createContact:
 showContact:
   path: /annuaire/show/{id}
   controller: App\Controller\AnnuaireController::showContact
+
+#Edition contact
+editContact:
+  path: /annuaire/edit/{id}
+  controller: App\Controller\AnnuaireController::editContact
 
 #Archive contact
 archiveContact:

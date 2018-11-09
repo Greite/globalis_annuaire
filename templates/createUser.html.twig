@@ -2,7 +2,7 @@
 <form action="{{ path('createUser') }}" method="POST" class="container">
     <div class="form-group">
         <label for="username">Identifiant : *</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+        <input type="text" class="form-control" id="username" name="username" placeholder="Username" {% if filled is defined and filled.username is not null %} value="{{ filled.username }}" {% endif %}>
     </div>
     <div class="form-group">
         <label for="password">Mot de passe : </label>
@@ -10,21 +10,21 @@
     </div>
     <div class="form-group">
         <label for="nom">Nom : *</label>
-        <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom">
+        <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" {% if filled is defined and filled.nom is not null %} value="{{ filled.nom }}" {% endif %}>
     </div>
     <div class="form-group">
         <label for="penom">Prénom(s) : *</label>
-        <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom">
+        <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom" {% if filled is defined and filled.prenom is not null %} value="{{ filled.prenom }}" {% endif %}>
     </div>
     <div class="form-group">
         <label for="email">Email : *</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email" {% if filled is defined and filled.email is not null %} value="{{ filled.email }}" {% endif %}>
     </div>
     <div class="form-group">
         <label for="role">Rôle : *</label>
         <select class="form-control" id="role" name="role">
             {% for role in roles %}
-                <option value="{{ role.id }}">{{ role.title }}</option>
+                <option value="{{ role.id }}" {% if filled is defined and filled.role == role.id %} selected {% endif %}>{{ role.title }}</option>
             {% endfor %}
         </select>
     </div>

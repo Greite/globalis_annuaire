@@ -37,12 +37,14 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Filtrer</button>
+            <button type="reset" class="btn btn-danger">Réinitialiser les filtres</button>
         </form>
     </div>
     <hr>
-    <a href="{{ path('formCreateUser') }}">
+    <a href="{{ path('formCreateUser') }}" class="col">
         <button type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Créer un utilisateur</button>
     </a>
+    <span class="col">Nombres de resultats : {{ users | length }}</span>
     <hr>
     <table class="table">
         <thead class="thead-light">

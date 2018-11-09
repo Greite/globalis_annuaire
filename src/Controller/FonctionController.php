@@ -17,11 +17,15 @@ class FonctionController extends Controller
     //Création de la fonction
     public function createFonction (request $request) {
         $manager = $this->get('doctrine.orm.entity_manager');
-        $fonction = new Fonction();
-        $fonction->setTitle($request->get('libelle'));
-        $manager->persist($fonction);
-        $manager->flush();
-        return $this->render('success.html.twig');
+        if ($request->get('libelle')) {
+            $fonction = new Fonction();
+            $fonction->setTitle($request->get('libelle'));
+            $manager->persist($fonction);
+            $manager->flush();
+            return $this->redirectToRoute('listFonction');
+        }else {
+            return $this->render('createFonction.html.twig', array('message' => 'Veuillez remplir le champ'));
+        }
     }
 
     //Formulaire de création de la fonction

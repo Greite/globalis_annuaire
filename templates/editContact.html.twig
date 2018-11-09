@@ -1,0 +1,156 @@
+{% include 'base.html.twig' %}
+
+<div class="container">
+    {% if champs is defined %}
+        <div class="alert alert-danger" role="alert">
+            {{ champs | raw }}
+        </div>
+        <hr>
+    {% endif %}
+    <div class="jumbotron">
+        <p class="lead">Général</p>
+        <form method="POST" action="{{ path('editContact', {'id': contact.id}) }}" class="container" enctype="multipart/form-data">
+            <div class="row">
+                <div class="form-group col">
+                    <p>Civilité : *</p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="civilite" id="m" value="M" {% if contact.civilite == "M" %} checked {% endif %}>
+                        <label class="form-check-label" for="m">M</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="civilite" id="mme" value="Mme" {% if contact.civilite == "Mme" %} checked {% endif %}>
+                        <label class="form-check-label" for="mme">Mme</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="civilite" id="melle" value="Melle" {% if contact.civilite == "Melle" %} checked {% endif %}>
+                        <label class="form-check-label" for="melle">Melle</label>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label for="nom">Nom : *</label>
+                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" {% if contact.nom is not null %} value="{{ contact.nom }}" {% endif %}>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="prenom">Prénom : *</label>
+                    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom" {% if contact.prenom is not null %} value="{{ contact.prenom }}" {% endif %}>
+                </div>
+                <div class="form-group col">
+                    <label for="phone">Téléphone : </label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Téléphone du contact" {% if contact.telephone is not null %} value="{{ contact.telephone }}" {% endif %}>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="birthdate">Date de naissance : </label>
+                    <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="MM/JJ/AAAA" {% if contact.birthdate is not null %} value="{{ contact.birthdate | date('m/d/Y') }}" {% endif %}>
+                </div>
+                <div class="form-group col">
+                    <label for="mobile">Téléphone mobile : </label>
+                    <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Téléphone portable" {% if contact.mobile is not null %} value="{{ contact.mobile }}" {% endif %}>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="email">Adresse email : </label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Adresse email" {% if contact.email is not null %} value="{{ contact.email }}" {% endif %}>
+                </div>
+            </div>
+            <hr class="my-4">
+            <p class="lead">Employeur</p>
+            <div class="row">
+                <div class="form-group col">
+                    <p>Décideur : *</p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="decideur" id="yes" value="1" {% if contact.societe.decideur == true %} checked {% endif %}>
+                        <label class="form-check-label" for="yes">Oui</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="decideur" id="no" value="0" {% if contact.societe.decideur == false %} checked {% endif %}>
+                        <label class="form-check-label" for="no">Non</label>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label for="societe">Société : *</label>
+                    <input type="text" class="form-control" id="societe" name="societe" placeholder="Société du contact" {% if contact.societe.name is not null %} value="{{ contact.societe.name }}" {% endif %}>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="fonction">Fonction : *</label>
+                    <select class="form-control" id="fonction" name="fonction">
+                        {% for fonction in fonctions %}
+                            <option value="{{ fonction.id }}" {% if contact.societe.fonction.id == fonction.id %} selected {% endif %}>{{ fonction.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col">
+                    <label for="societedate">Date d'entrée dans la société : </label>
+                    <input type="date" class="form-control" id="societedate" name="societedate" placeholder="MM/JJ/AAAA" {% if contact.societe.entersociete is not null %} value="{{ contact.societe.entersociete | date('m/d/Y') }}" {% endif %}>
+                </div>
+            </div>
+            <p class="lead">Adresse : *</p>
+            <div class="row">
+                <div class="form-group col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="etranger" id="france" value="0" {% if contact.societe.etranger == false %} checked {% endif %}>
+                        <label class="form-check-label" for="yes">France</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="etranger" id="etranger" value="1" {% if contact.societe.etranger == true %} checked {% endif %}>
+                        <label class="form-check-label" for="no">Étranger</label>
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="pays" name="pays" placeholder="Pays" {% if contact.societe.pays is not null %} value="{{ contact.societe.pays }}" {% endif %}>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="address1" name="address1" placeholder="Appartement - Étage - Couloir - Escalier" {% if contact.societe.address1 is not null %} value="{{ contact.societe.address1 }}" {% endif %}>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="address2" name="address2" placeholder="Entrée - Bâtiment - Immeuble - Résidence" {% if contact.societe.address2 is not null %} value="{{ contact.societe.address2 }}" {% endif %}>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="address3" name="address3" placeholder="Numéro et libellé de la voie (obligatoire)" {% if contact.societe.address3 is not null %} value="{{ contact.societe.address3 }}" {% endif %}>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="address4" name="address4" placeholder="Service particulier de livraison - Lieu dit - Mention spéciale" {% if contact.societe.address4 is not null %} value="{{ contact.societe.address4 }}" {% endif %}>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="postal" name="postal" placeholder="Code postal (obligatoire)" {% if contact.societe.postal is not null %} value="{{ contact.societe.postal }}" {% endif %}>
+                </div>
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Ville (obligatoire)" {% if contact.societe.ville is not null %} value="{{ contact.societe.ville }}" {% endif %}>
+                </div>
+            </div>
+            <hr class="my-4">
+            <p class="lead">Divers</p>
+            <div class="row">
+                <div class="input-group col">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="file" name="file" accept="image/*">
+                        <label class="custom-file-label" for="file">Choisir</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="commentaire">Commentaire : </label>
+                    <textarea type="text" class="form-control" id="commentaire" name="commentaire" placeholder="Commentaire">{% if contact.commentaire is not null %}{{ contact.commentaire }}{% endif %}</textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Modifier</button>
+        </form>
+    </div>
+</div>

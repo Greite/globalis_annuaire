@@ -7,3 +7,12 @@
     </div>
     <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>
+
+{% if message is defined %}
+    <hr>
+    <div class="container">
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    </div>
+{% endif %}

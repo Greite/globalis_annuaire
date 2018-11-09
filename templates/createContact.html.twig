@@ -1,6 +1,12 @@
 {% include 'base.html.twig' %}
 
 <div class="container">
+    {% if champs %}
+        <div class="alert alert-danger" role="alert">
+            {{ champs | raw }}
+        </div>
+        <hr>
+    {% endif %}
     <div class="jumbotron">
         <p class="lead">Général</p>
         <form method="POST" action="{{ path('createContact') }}" class="container" enctype="multipart/form-data">
@@ -8,47 +14,47 @@
                 <div class="form-group col">
                     <p>Civilité : *</p>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="civilite" id="m" value="M">
+                        <input class="form-check-input" type="radio" name="civilite" id="m" value="M" {% if filled is not null and filled.civilite == "M" %} checked {% endif %}>
                         <label class="form-check-label" for="m">M</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="civilite" id="mme" value="Mme">
+                        <input class="form-check-input" type="radio" name="civilite" id="mme" value="Mme" {% if filled is not null and filled.civilite == "Mme" %} checked {% endif %}>
                         <label class="form-check-label" for="mme">Mme</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="civilite" id="melle" value="Melle">
+                        <input class="form-check-input" type="radio" name="civilite" id="melle" value="Melle" {% if filled is not null and filled.civilite == "Melle" %} checked {% endif %}>
                         <label class="form-check-label" for="melle">Melle</label>
                     </div>
                 </div>
                 <div class="form-group col">
                     <label for="nom">Nom : *</label>
-                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom">
+                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" {% if filled is not null and filled.nom is not null %} value="{{ filled.nom }}" {% endif %}>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
                     <label for="prenom">Prénom : *</label>
-                    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom">
+                    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom" {% if filled is not null and filled.prenom is not null %} value="{{ filled.prenom }}" {% endif %}>
                 </div>
                 <div class="form-group col">
                     <label for="phone">Téléphone : </label>
-                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Téléphone du contact">
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Téléphone du contact" {% if filled is not null and filled.telephone is not null %} value="{{ filled.telephone }}" {% endif %}>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
                     <label for="birthdate">Date de naissance : </label>
-                    <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="MM/JJ/AAAA">
+                    <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="MM/JJ/AAAA" {% if filled is not null and filled.birthdate is not null %} value="{{ filled.birthdate }}" {% endif %}>
                 </div>
                 <div class="form-group col">
                     <label for="mobile">Téléphone mobile : </label>
-                    <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Téléphone portable">
+                    <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Téléphone portable" {% if filled is not null and filled.mobile is not null %} value="{{ filled.mobile }}" {% endif %}>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
                     <label for="email">Adresse email : </label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Adresse email">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Adresse email" {% if filled is not null and filled.email is not null %} value="{{ filled.email }}" {% endif %}>
                 </div>
             </div>
             <hr class="my-4">
@@ -57,17 +63,17 @@
                 <div class="form-group col">
                     <p>Décideur : *</p>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="decideur" id="yes" value="1">
+                        <input class="form-check-input" type="radio" name="decideur" id="yes" value="1" {% if filled is not null and filled.decideur == true %} checked {% endif %}>
                         <label class="form-check-label" for="yes">Oui</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="decideur" id="no" value="0">
+                        <input class="form-check-input" type="radio" name="decideur" id="no" value="0" {% if filled is not null and filled.decideur == false %} checked {% endif %}>
                         <label class="form-check-label" for="no">Non</label>
                     </div>
                 </div>
                 <div class="form-group col">
                     <label for="societe">Société : *</label>
-                    <input type="text" class="form-control" id="societe" name="societe" placeholder="Société du contact">
+                    <input type="text" class="form-control" id="societe" name="societe" placeholder="Société du contact" {% if filled is not null and filled.societe is not null %} value="{{ filled.societe }}" {% endif %}>
                 </div>
             </div>
             <div class="row">
@@ -75,57 +81,57 @@
                     <label for="fonction">Fonction : *</label>
                     <select class="form-control" id="fonction" name="fonction">
                         {% for fonction in fonctions %}
-                            <option value="{{ fonction.id }}">{{ fonction.title }}</option>
+                            <option value="{{ fonction.id }}" {% if filled is not null and filled.fonction == fonction.id %} selected {% endif %}>{{ fonction.title }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="form-group col">
                     <label for="societedate">Date d'entrée dans la société : </label>
-                    <input type="date" class="form-control" id="societedate" name="societedate" placeholder="MM/JJ/AAAA">
+                    <input type="date" class="form-control" id="societedate" name="societedate" placeholder="MM/JJ/AAAA" {% if filled is not null and filled.entersociete is not null %} value="{{ filled.entersociete }}" {% endif %}>
                 </div>
             </div>
             <p class="lead">Adresse : *</p>
             <div class="row">
                 <div class="form-group col">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="etranger" id="france" value="0">
+                        <input class="form-check-input" type="radio" name="etranger" id="france" value="0" {% if filled is not null and filled.etranger == false %} checked {% endif %}>
                         <label class="form-check-label" for="yes">France</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="etranger" id="etranger" value="1">
+                        <input class="form-check-input" type="radio" name="etranger" id="etranger" value="1" {% if filled is not null and filled.etranger == true %} checked {% endif %}>
                         <label class="form-check-label" for="no">Étranger</label>
                     </div>
                 </div>
                 <div class="form-group col">
-                    <input type="text" class="form-control" id="pays" name="pays" placeholder="Pays">
+                    <input type="text" class="form-control" id="pays" name="pays" placeholder="Pays" {% if filled is not null and filled.pays is not null %} value="{{ filled.pays }}" {% endif %}>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <input type="text" class="form-control" id="address1" name="address1" placeholder="Appartement - Étage - Couloir - Escalier">
+                    <input type="text" class="form-control" id="address1" name="address1" placeholder="Appartement - Étage - Couloir - Escalier" {% if filled is not null and filled.address1 is not null %} value="{{ filled.address1 }}" {% endif %}>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <input type="text" class="form-control" id="address2" name="address2" placeholder="Entrée - Bâtiment - Immeuble - Résidence">
+                    <input type="text" class="form-control" id="address2" name="address2" placeholder="Entrée - Bâtiment - Immeuble - Résidence" {% if filled is not null and filled.address2 is not null %} value="{{ filled.address2 }}" {% endif %}>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <input type="text" class="form-control" id="address3" name="address3" placeholder="Numéro et libellé de la voie">
+                    <input type="text" class="form-control" id="address3" name="address3" placeholder="Numéro et libellé de la voie (obligatoire)" {% if filled is not null and filled.address3 is not null %} value="{{ filled.address3 }}" {% endif %}>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <input type="text" class="form-control" id="address4" name="address4" placeholder="Service particulier de livraison - Lieu dit - Mention spéciale">
+                    <input type="text" class="form-control" id="address4" name="address4" placeholder="Service particulier de livraison - Lieu dit - Mention spéciale" {% if filled is not null and filled.address4 is not null %} value="{{ filled.address4 }}" {% endif %}>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <input type="text" class="form-control" id="postal" name="postal" placeholder="Code postal">
+                    <input type="text" class="form-control" id="postal" name="postal" placeholder="Code postal (obligatoire)" {% if filled is not null and filled.postal is not null %} value="{{ filled.postal }}" {% endif %}>
                 </div>
                 <div class="form-group col">
-                    <input type="text" class="form-control" id="city" name="city" placeholder="Ville">
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Ville (obligatoire)" {% if filled is not null and filled.city is not null %} value="{{ filled.city }}" {% endif %}>
                 </div>
             </div>
             <hr class="my-4">
@@ -141,7 +147,7 @@
             <div class="row">
                 <div class="form-group col">
                     <label for="commentaire">Commentaire : </label>
-                    <textarea type="text" class="form-control" id="commentaire" name="commentaire" placeholder="Commentaire"></textarea>
+                    <textarea type="text" class="form-control" id="commentaire" name="commentaire" placeholder="Commentaire">{% if filled is not null and filled.commentaire is not null %}{{ filled.commentaire }}{% endif %}</textarea>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Ajouter</button>

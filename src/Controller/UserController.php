@@ -21,8 +21,15 @@ class UserController extends Controller
         $manager = $this->get('doctrine.orm.entity_manager');
         $userRepository = $manager->getRepository('App:User');
         $roleRepository = $manager->getRepository('App:Role');
+        $filled = array(
+            'username' => $request->get('username'),
+            'nom' => $request->get('nom'),
+            'prenom' => $request->get('prenom'),
+            'email' => $request->get('email'),
+            'role' => $request->get('role')
+        );
 
-        if ($request->get('username') || $request->get('password') || $request->get('nom') || $request->get('prenom') || $request->get('email')) {
+        if ($request->get('username') != '' && $request->get('password') != '' && $request->get('nom') != '' && $request->get('prenom') != '' && $request->get('email') != '') {
             if (filter_var($request->get('email'), FILTER_VALIDATE_EMAIL)) {
                 $alreadyUser = $userRepository->findOneByEmail($request->get('email'));
                 if (!$alreadyUser) {
@@ -39,15 +46,15 @@ class UserController extends Controller
                     return $this->redirectToRoute('listUser');
                 }else {
                     $roles = $roleRepository->findAll();
-                    return $this->render('createUser.html.twig', array('roles' => $roles, 'message' => 'Cette adresse email possède déjà un compte'));
+                    return $this->render('createUser.html.twig', array('roles' => $roles, 'message' => 'Cette adresse email possède déjà un compte', 'filled' => $filled));
                 }
             }else {
                 $roles = $roleRepository->findAll();
-                return $this->render('createUser.html.twig', array('roles' => $roles, 'message' => 'Veuillez saisir une adresse email valide'));
+                return $this->render('createUser.html.twig', array('roles' => $roles, 'message' => 'Veuillez saisir une adresse email valide', 'filled' => $filled));
             }
         }else {
             $roles = $roleRepository->findAll();
-            return $this->render('createUser.html.twig', array('roles' => $roles, 'message' => 'Veuillez remplir tous les champss'));
+            return $this->render('createUser.html.twig', array('roles' => $roles, 'message' => 'Veuillez remplir tous les champs', 'filled' => $filled));
         }
     }
 

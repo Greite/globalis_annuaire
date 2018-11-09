@@ -1,6 +1,10 @@
 {% include 'base.html.twig' %}
 
 <div class="container">
+    <a href="{{ path('editContact', {'id': contact.id}) }}">
+        <button type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Modifier</button>
+    </a>
+    <hr>
     <div class="jumbotron">
         <p class="lead">Général</p>
         <div class="row">

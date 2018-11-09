@@ -32,12 +32,14 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Filtrer</button>
+            <button type="reset" class="btn btn-danger">Réinitialiser les filtres</button>
         </form>
     </div>
     <hr>
-    <a href="{{ path('formCreateContact') }}">
+    <a href="{{ path('formCreateContact') }}" class="col">
         <button type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Créer un contact</button>
     </a>
+    <span class="col">Nombres de resultats : {{ contacts | length }}</span>
     <hr>
     <table class="table">
         <thead class="thead-light">
@@ -59,6 +61,8 @@
                     <td>+33 {{ contact.telephone }}</td>
                 {% elseif contact.mobile != 0 %}
                     <td>+33 {{ contact.mobile }}</td>
+                {% else %}
+                    <td>Non renseigné</td>
                 {% endif %}
                 <td>
                     <a href="{{ path('showContact', {'id': contact.id}) }}"><i class="fas fa-search"></i></a>

@@ -38,12 +38,12 @@ class Societe
     private $entersociete;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $etranger;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $pays;
 
@@ -135,7 +135,7 @@ class Societe
         return $this->etranger;
     }
 
-    public function setEtranger(bool $etranger): self
+    public function setEtranger(?bool $etranger): self
     {
         $this->etranger = $etranger;
 
