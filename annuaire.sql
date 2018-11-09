@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 09 nov. 2018 à 11:03
+-- Généré le :  ven. 09 nov. 2018 à 15:48
 -- Version du serveur :  8.0.13
 -- Version de PHP :  7.1.16
 
@@ -33,9 +33,9 @@ CREATE TABLE `contact` (
   `civilite` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
   `prenom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `telephone` int(11) NOT NULL,
+  `telephone` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `birthdate` datetime DEFAULT NULL,
-  `mobile` int(11) DEFAULT NULL,
+  `mobile` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `societe_id` int(11) NOT NULL,
   `commentaire` varchar(512) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -121,8 +121,23 @@ CREATE TABLE `user` (
   `password` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `prenom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `online` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id`, `role_id`, `username`, `password`, `nom`, `prenom`, `email`, `online`) VALUES
+(5, 1, 'Greite', '$2y$10$0rCePSDa6iJfr2l85imMAOvOZ/.krS459WQvkfGhQzz6JwW9KBTmK', 'Painteaux', 'Gauthier', 'gauthier.painteaux@gmail.com', 1),
+(7, 2, 'a', '$2y$10$Lfhgt2rAI4C7AQUqPUoCTe3xMZtTO2/Mnq8Gx4MbrzfsTkQypjg7a', 'a', 'a', 'a@gmail.com', 0),
+(8, 2, 'b', '$2y$10$.OFckXUDNRuOFb9xo3o2i.OmPgzGqxOhbStHk90kGz.1cjhCvlxgm', 'b', 'b', 'b@gmail.com', 0),
+(9, 2, 'c', '$2y$10$JFUWz4/4tBRi2/P5snW8SeQSprzvGx6yFGfGiCjlki1McYzFpf6EO', 'c', 'c', 'c@gmail.com', 0),
+(10, 2, 'd', '$2y$10$CVjBrqFxGzZs/bDcQPD2g.kdRwzWH.wxjqtO8PmoFH378qYP22auO', 'd', 'd', 'd@gmail.com', 0),
+(11, 2, 'e', '$2y$10$OVwYMA4dRb.TgjdNkoYYzuPD5Kr2Dh.KE67rb4JOiUsgoav9LIyNy', 'e', 'e', 'e@gmail.com', 0),
+(12, 2, 'f', '$2y$10$dHvnTxUPLXJMehvmtUtCe.XzE990imE/HdruwGM6.6Rg/jWirNhB.', 'f', 'f', 'f@gmail.com', 0),
+(13, 2, 'g', '$2y$10$Qat5oon97NsYzS5wQYvT9.pOqqfS56fXFL.smKF/i5fclvww5ePeO', 'g', 'g', 'g@gmail.com', 0);
 
 --
 -- Index pour les tables déchargées
@@ -206,7 +221,7 @@ ALTER TABLE `societe`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Contraintes pour les tables déchargées
