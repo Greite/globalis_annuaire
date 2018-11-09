@@ -93,6 +93,9 @@ class UserController extends Controller
                 $qb->andWhere('u.prenom LIKE :prenom');
                 $qb->setParameter('prenom', '%'.$request->get('prenom').'%');
             }
+            if (!$request->get('activeUser')) {
+                $qb->andWhere('u.online = 0');
+            }
             if ($request->get('role') != '') {
                 $roleRepository = $manager->getRepository('App:Role');
                 $role = $roleRepository->findOneById($request->get('role'));
