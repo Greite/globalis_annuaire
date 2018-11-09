@@ -96,6 +96,16 @@
         <p class="lead">Divers</p>
         <div class="row">
             <div class="col">
+                <p>Image :</p>
+                {% if contact.image %}
+                    <img src="{{ asset(contact.image.contentUrl) }}" alt="{{ contact.image.caption }}">
+                {% else %}
+                    <i class="fas fa-images" style="width: 100; height: 100;"></i>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
                 <p>Commentaire :</p>
                 {% if contact.commentaire != '' %}
                     <p>{{ contact.commentaire }}</p>

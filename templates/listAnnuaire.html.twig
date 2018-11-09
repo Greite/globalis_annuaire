@@ -55,7 +55,11 @@
                 <td>{{ contact.societe.name }}</td>
                 <td>{{ contact.nom }}</td>
                 <td>{{ contact.prenom }}</td>
-                <td>+33 {{ contact.telephone }}</td>
+                {% if contact.telephone !=  0 %}
+                    <td>+33 {{ contact.telephone }}</td>
+                {% elseif contact.mobile != 0 %}
+                    <td>+33 {{ contact.mobile }}</td>
+                {% endif %}
                 <td>
                     <a href="{{ path('showContact', {'id': contact.id}) }}"><i class="fas fa-search"></i></a>
                     {% if app.session.get('user').role.id == 1 %}

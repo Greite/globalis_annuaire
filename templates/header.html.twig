@@ -7,15 +7,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('listAnnuaire') }}">Annuaires</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('listUser') }}">Utilisateurs</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('listFonction') }}">Fonctions</a>
-            </li>
+            {% if app.session.get('user') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('listAnnuaire') }}">Annuaires</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('listUser') }}">Utilisateurs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('listFonction') }}">Fonctions</a>
+                </li>
+            {% endif %}
             {% if app.session.get('user') %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('deconnexion') }}">Déconnexion</a>

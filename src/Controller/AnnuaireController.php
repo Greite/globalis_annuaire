@@ -10,7 +10,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Entity\Societe;
-use App\Entity\Fonction;
+use App\Entity\PieceJointe;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -46,6 +46,14 @@ class AnnuaireController extends Controller
         $societe->setPostal(intval($request->get('postal')));
         $societe->setVille($request->get('city'));
 
+        $file = $request->files->get('file');
+        $filename = $file->getFilename().'.'.$file->guessExtension();
+        $file->move('uploads/images', $filename);
+        $image = new PieceJointe();
+        $image->setCaption($file->getClientOriginalName());
+        $image->setContentUrl('uploads/images/'.$filename);
+
+        $contact->setImage($image);
         $contact->setSociete($societe);
         $manager->persist($societe);
         $manager->persist($contact);

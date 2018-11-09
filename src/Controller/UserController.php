@@ -73,6 +73,8 @@ class UserController extends Controller
     public function listUser (request $request) {
         $manager = $this->get('doctrine.orm.entity_manager');
         $repository = $manager->getRepository('App:User');
+        $roleRepository = $manager->getRepository('App:Role');
+        $roles = $roleRepository->findAll();
         if ($request->request->all() != []) {
             $qb = $repository->createQueryBuilder('u');
             if ($request->get('nom') != '') {
@@ -85,7 +87,7 @@ class UserController extends Controller
             }
             if ($request->get('role') != '') {
                 $roleRepository = $manager->getRepository('App:Role');
-                $role = $roleRepository->findOneByTitle($request->get('role'));
+                $role = $roleRepository->findOneById($request->get('role'));
                 $qb->andWhere('u.role = :role');
                 $qb->setParameter('role', $role);
             }
@@ -94,7 +96,7 @@ class UserController extends Controller
         }else {
             $users = $repository->findAll();
         }
-        return $this->render('listUser.html.twig', array('users' => $users));
+        return $this->render('listUser.html.twig', array('users' => $users, 'roles' => $roles));
     }
 
     //Formulaire connexion

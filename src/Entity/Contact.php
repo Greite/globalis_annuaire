@@ -67,6 +67,11 @@ class Contact
      */
     private $archived = 0;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\PieceJointe", cascade={"persist", "remove"})
+     */
+    private $image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -188,6 +193,18 @@ class Contact
     public function setArchived(bool $archived): self
     {
         $this->archived = $archived;
+
+        return $this;
+    }
+
+    public function getImage(): ?PieceJointe
+    {
+        return $this->image;
+    }
+
+    public function setImage(?PieceJointe $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
