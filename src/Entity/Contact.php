@@ -32,7 +32,7 @@ class Contact
     private $nom;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=25, nullable=true)
      */
     private $telephone;
 
@@ -42,7 +42,7 @@ class Contact
     private $birthdate;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=25, nullable=true)
      */
     private $mobile;
 
@@ -113,12 +113,12 @@ class Contact
         return $this;
     }
 
-    public function getTelephone(): ?int
+    public function getTelephone(): ?string
     {
         return $this->telephone;
     }
 
-    public function setTelephone(int $telephone): self
+    public function setTelephone(string $telephone): self
     {
         $this->telephone = $telephone;
 
@@ -137,12 +137,12 @@ class Contact
         return $this;
     }
 
-    public function getMobile(): ?int
+    public function getMobile(): ?string
     {
         return $this->mobile;
     }
 
-    public function setMobile(?int $mobile): self
+    public function setMobile(?string $mobile): self
     {
         $this->mobile = $mobile;
 

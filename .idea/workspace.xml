@@ -2,25 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85ecc3cb-9de2-4e23-a57d-8847ccc75b2f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/annuaire.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/annuaire.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/createFonction.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/createFonction.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/createUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/createUser.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AnnuaireController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AnnuaireController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Contact.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/createContact.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/createContact.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/listAnnuaire.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/listAnnuaire.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/listFonction.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/listFonction.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/listUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/listUser.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/showContact.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/showContact.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/success.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/test.html.twig" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,10 +31,10 @@
         <counts>
           <entry key="env" value="2" />
           <entry key="html" value="1" />
-          <entry key="php" value="60" />
+          <entry key="php" value="66" />
           <entry key="png" value="1" />
           <entry key="rnc" value="1" />
-          <entry key="twig" value="97" />
+          <entry key="twig" value="101" />
           <entry key="yaml" value="2" />
         </counts>
       </usages-collector>
@@ -57,9 +43,9 @@
           <entry key=".env file" value="2" />
           <entry key="HTML" value="1" />
           <entry key="Image" value="1" />
-          <entry key="PHP" value="60" />
+          <entry key="PHP" value="66" />
           <entry key="RNG Compact" value="1" />
-          <entry key="Twig" value="97" />
+          <entry key="Twig" value="101" />
           <entry key="YAML" value="2" />
         </counts>
       </usages-collector>
@@ -71,16 +57,16 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="env" value="46" />
-          <entry key="php" value="8173" />
-          <entry key="twig" value="7080" />
+          <entry key="php" value="8499" />
+          <entry key="twig" value="7152" />
           <entry key="yaml" value="1048" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="46" />
-          <entry key="PHP" value="8173" />
-          <entry key="Twig" value="7080" />
+          <entry key="PHP" value="8499" />
+          <entry key="Twig" value="7152" />
           <entry key="YAML" value="1048" />
         </counts>
       </usages-collector>
@@ -95,22 +81,23 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/UserController.php">
+        <entry file="file://$PROJECT_DIR$/src/Controller/AnnuaireController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="617">
-              <caret line="151" column="50" selection-start-line="151" selection-start-column="50" selection-end-line="151" selection-end-column="50" />
+            <state relative-caret-position="266">
+              <caret line="203" column="58" selection-start-line="203" selection-start-column="58" selection-end-line="203" selection-end-column="58" />
               <folding>
-                <element signature="e#128#148#0#PHP" expanded="true" />
+                <element signature="e#6#99#0#PHP" expanded="true" />
+                <element signature="e#128#151#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/listUser.html.twig">
+        <entry file="file://$PROJECT_DIR$/templates/listAnnuaire.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="67" column="112" selection-start-line="67" selection-start-column="112" selection-end-line="67" selection-end-column="112" />
+            <state relative-caret-position="408">
+              <caret line="63" column="45" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -135,6 +122,7 @@
       <find>filled</find>
       <find>success.html.twig</find>
       <find>contact is not null and</find>
+      <find>mobile</find>
     </findStrings>
     <replaceStrings>
       <replace>contact</replace>
@@ -154,23 +142,23 @@
         <option value="$PROJECT_DIR$/templates/success.html.twig" />
         <option value="$PROJECT_DIR$/templates/connexion.html.twig" />
         <option value="$PROJECT_DIR$/templates/listAnnuaire.htl.twig.html" />
-        <option value="$PROJECT_DIR$/src/Entity/Contact.php" />
         <option value="$PROJECT_DIR$/templates/header.html.twig" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/Societe.php" />
-        <option value="$PROJECT_DIR$/templates/createContact.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/FonctionController.php" />
         <option value="$PROJECT_DIR$/templates/editContact.html.twig" />
-        <option value="$PROJECT_DIR$/src/Controller/AnnuaireController.php" />
         <option value="$PROJECT_DIR$/config/routes.yaml" />
         <option value="$PROJECT_DIR$/config/prod/deploy.php" />
-        <option value="$PROJECT_DIR$/templates/showContact.html.twig" />
         <option value="$PROJECT_DIR$/templates/listFonction.html.twig" />
-        <option value="$PROJECT_DIR$/templates/listAnnuaire.html.twig" />
         <option value="$PROJECT_DIR$/templates/createFonction.html.twig" />
         <option value="$PROJECT_DIR$/templates/createUser.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/UserController.php" />
         <option value="$PROJECT_DIR$/templates/listUser.html.twig" />
+        <option value="$PROJECT_DIR$/templates/createContact.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/AnnuaireController.php" />
+        <option value="$PROJECT_DIR$/templates/showContact.html.twig" />
+        <option value="$PROJECT_DIR$/src/Entity/Contact.php" />
+        <option value="$PROJECT_DIR$/templates/listAnnuaire.html.twig" />
       </list>
     </option>
   </component>
@@ -322,6 +310,12 @@
             <path>
               <item name="annuaire" type="b2602c69:ProjectViewProjectNode" />
               <item name="annuaire" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="annuaire" type="b2602c69:ProjectViewProjectNode" />
+              <item name="annuaire" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -364,12 +358,12 @@
       <option name="presentableId" value="Default" />
       <updated>1541499300948</updated>
       <workItem from="1541499306736" duration="25537000" />
-      <workItem from="1541595888694" duration="41609000" />
+      <workItem from="1541595888694" duration="43377000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67146000" />
+    <option name="totallyTimeSpent" value="68914000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -489,13 +483,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Contact.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -507,13 +494,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" selection-start-line="14" selection-end-line="21" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Fonction.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -530,24 +510,6 @@
           <caret line="26" column="106" selection-start-line="26" selection-start-column="106" selection-end-line="26" selection-end-column="106" />
           <folding>
             <element signature="e#128#152#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/createContact.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="31" column="22" lean-forward="true" selection-end-line="155" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/AnnuaireController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="249" column="34" selection-start-line="249" selection-start-column="34" selection-end-line="249" selection-end-column="34" />
-          <folding>
-            <element signature="e#6#99#0#PHP" expanded="true" />
-            <element signature="e#128#151#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -590,13 +552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/listAnnuaire.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/createFonction.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -611,9 +566,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/listUser.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="67" column="112" selection-start-line="67" selection-start-column="112" selection-end-line="67" selection-end-column="112" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="617">
+        <state relative-caret-position="1983">
           <caret line="151" column="50" selection-start-line="151" selection-start-column="50" selection-end-line="151" selection-end-column="50" />
           <folding>
             <element signature="e#128#148#0#PHP" expanded="true" />
@@ -621,17 +583,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/showContact.html.twig">
+    <entry file="file://$PROJECT_DIR$/templates/createContact.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="106" column="79" selection-start-line="106" selection-start-column="79" selection-end-line="106" selection-end-column="79" />
+        <state relative-caret-position="1335">
+          <caret line="89" column="114" selection-start-line="89" selection-start-column="114" selection-end-line="89" selection-end-column="114" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/listUser.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/Controller/AnnuaireController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="67" column="112" selection-start-line="67" selection-start-column="112" selection-end-line="67" selection-end-column="112" />
+        <state relative-caret-position="266">
+          <caret line="203" column="58" selection-start-line="203" selection-start-column="58" selection-end-line="203" selection-end-column="58" />
+          <folding>
+            <element signature="e#6#99#0#PHP" expanded="true" />
+            <element signature="e#128#151#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Contact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="142" column="5" selection-start-line="142" selection-start-column="5" selection-end-line="142" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Fonction.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/showContact.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/listAnnuaire.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="63" column="45" selection-start-line="63" selection-start-column="45" selection-end-line="63" selection-end-column="45" />
         </state>
       </provider>
     </entry>

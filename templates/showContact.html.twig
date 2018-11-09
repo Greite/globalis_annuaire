@@ -24,8 +24,8 @@
             </div>
             <div class="col">
                 <p>Téléphone :</p>
-                {% if contact.telephone != 0 %}
-                    <p>+33 {{ contact.telephone }}</p>
+                {% if contact.telephone != '' %}
+                    <p>{{ contact.telephone }}</p>
                 {% else %}
                     <p>Non renseigné</p>
                 {% endif %}
@@ -42,8 +42,8 @@
             </div>
             <div class="col">
                 <p>Téléphone mobile :</p>
-                {% if contact.mobile != 0 %}
-                    <p>+33 {{ contact.mobile }}</p>
+                {% if contact.mobile != '' %}
+                    <p>{{ contact.mobile }}</p>
                 {% else %}
                     <p>Non renseigné</p>
                 {% endif %}
@@ -90,9 +90,15 @@
         <div class="row">
             <div class="col">
                 <p>{{ contact.societe.address3 }}</p>
-                <p>{{ contact.societe.address1 }}</p>
-                <p>{{ contact.societe.address2 }}</p>
-                <p>{{ contact.societe.address4 }}</p>
+                {% if contact.societe.address1 %}
+                    <p>{{ contact.societe.address1 }}</p>
+                {% endif %}
+                {% if contact.societe.address2 %}
+                    <p>{{ contact.societe.address2 }}</p>
+                {% endif %}
+                {% if contact.societe.address4 %}
+                    <p>{{ contact.societe.address4 }}</p>
+                {% endif %}
                 <p>{{ contact.societe.postal }} {{ contact.societe.ville }}</p>
             </div>
         </div>

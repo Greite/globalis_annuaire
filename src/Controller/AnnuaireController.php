@@ -38,9 +38,12 @@ class AnnuaireController extends Controller
         }else {
             $message .= "- Prenom<br>";
         }
-        $contact->setTelephone(intval($request->get('phone')));
-        $contact->setBirthdate(new \DateTime($request->get('birthdate')));
-        $contact->setMobile(intval($request->get('mobile')));
+        $contact->setTelephone($request->get('phone'));
+        $arrayBirthdate = explode('/', $request->get('birthdate'));
+        $birthdate = new \DateTime();
+        $birthdate->setDate($arrayBirthdate[2], $arrayBirthdate[1], $arrayBirthdate[0]);
+        $contact->setBirthdate($birthdate);
+        $contact->setMobile($request->get('mobile'));
         $contact->setEmail($request->get('email'));
         $contact->setCommentaire($request->get('commentaire'));
 
@@ -57,7 +60,13 @@ class AnnuaireController extends Controller
         }
         $fonction = $fonctionRepository->findOneById($request->get('fonction'));
         $societe->setFonction($fonction);
-        $societe->setEntersociete(new \DateTime($request->get('societedate')));
+        $arraySocieteDate = explode('/', $request->get('societedate'));
+        $societeDate = new \DateTime();
+        $societeDate->setDate($arraySocieteDate[2], $arraySocieteDate[1], $arraySocieteDate[0]);
+        $societe->setEntersociete($societeDate);
+        if ($birthdate > $societeDate) {
+            $message .= "- Date de naissance plus récente que la date d'entrée dans la société<br>";
+        }
         $societe->setEtranger($request->get('etranger'));
         $societe->setPays($request->get('pays'));
         $societe->setAddress1($request->get('address1'));
@@ -192,9 +201,12 @@ class AnnuaireController extends Controller
             }else {
                 $message .= "- Prenom<br>";
             }
-            $contact->setTelephone(intval($request->get('phone')));
-            $contact->setBirthdate(new \DateTime($request->get('birthdate')));
-            $contact->setMobile(intval($request->get('mobile')));
+            $contact->setTelephone($request->get('phone'));
+            $arrayBirthdate = explode('/', $request->get('birthdate'));
+            $birthdate = new \DateTime();
+            $birthdate->setDate($arrayBirthdate[2], $arrayBirthdate[1], $arrayBirthdate[0]);
+            $contact->setBirthdate($birthdate);
+            $contact->setMobile($request->get('mobile'));
             $contact->setEmail($request->get('email'));
             $contact->setCommentaire($request->get('commentaire'));
 
@@ -211,7 +223,13 @@ class AnnuaireController extends Controller
             }
             $fonction = $fonctionRepository->findOneById($request->get('fonction'));
             $societe->setFonction($fonction);
-            $societe->setEntersociete(new \DateTime($request->get('societedate')));
+            $arraySocieteDate = explode('/', $request->get('societedate'));
+            $societeDate = new \DateTime();
+            $societeDate->setDate($arraySocieteDate[2], $arraySocieteDate[1], $arraySocieteDate[0]);
+            $societe->setEntersociete($societeDate);
+            if ($birthdate > $societeDate) {
+                $message .= "- Date de naissance plus récente que la date d'entrée dans la société<br>";
+            }
             $societe->setEtranger($request->get('etranger'));
             $societe->setPays($request->get('pays'));
             $societe->setAddress1($request->get('address1'));
