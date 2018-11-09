@@ -41,6 +41,7 @@ class UserController extends Controller
                     $user->setEmail($request->get('email'));
                     $role = $roleRepository->findOneById($request->get('role'));
                     $user->setRole($role);
+                    $user->setOnline(false);
                     $manager->persist($user);
                     $manager->flush();
                     return $this->redirectToRoute('listUser');
@@ -114,15 +115,13 @@ class UserController extends Controller
     //Connexion
     public function connexion (request $request) {
         $session = new Session();
-        if ($session->isStarted()) {
-            $session->clear();
-        }
         $manager = $this->get('doctrine.orm.entity_manager');
         $repository = $manager->getRepository('App:User');
         $user = $repository->findOneByEmail($request->get('email'));
         if ($user != null) {
             if ($user->getPasswordIsValid($request->get('password'))) {
                 $formattedUser = array(
+                    'id' => $user->getId(),
                     'prenom' => $user->getPrenom(),
                     'nom' => $user->getNom(),
                     'password' => $user->getPassword(),
@@ -132,6 +131,9 @@ class UserController extends Controller
                     )
                 );
                 $session->set('user', $formattedUser);
+                $user->setOnline(true);
+                $manager->persist($user);
+                $manager->flush();
                 return $this->redirectToRoute('listAnnuaire');
             }else {
                 return $this->render('connexion.html.twig', array('failed' => true));
@@ -143,7 +145,14 @@ class UserController extends Controller
 
     //Deconnexion
     public function deconnexion () {
-        $session = new Session();
+        $manager = $this->get('doctrine.orm.entity_manager');
+        $repository = $manager->getRepository('App:User');
+        $session = $this->get('session');
+        $user = $session->get('user');
+        $user = $repository->findOneById($user['id']);
+        $user->setOnline(false);
+        $manager->persist($user);
+        $manager->flush();
         $session->clear();
         return $this->redirectToRoute('formConnexion');
     }

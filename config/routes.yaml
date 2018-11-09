@@ -1,12 +1,7 @@
-#idndex
+#index
 index:
-    path: /
-    controller: App\Controller\UserController::formConnexion
-
-#test
-test:
-  path: /test
-  controller: App\Controller\DefaultController::test
+  path: /
+  controller: App\Controller\UserController::formConnexion
 
 #Création utilisateur
 createUser:

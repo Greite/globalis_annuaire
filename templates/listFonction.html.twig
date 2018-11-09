@@ -25,9 +25,11 @@
         </form>
     </div>
     <hr>
-    <a href="{{ path('formCreateFonction') }}" class="col">
-        <button type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Créer une fonction</button>
-    </a>
+    {% if app.session.get('user').role.id == 1 %}
+        <a href="{{ path('formCreateFonction') }}" class="col">
+            <button type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Créer une fonction</button>
+        </a>
+    {% endif %}
     <span class="col">Nombres de resultats : {{ fonctions | length }}</span>
     <hr>
     <table class="table">

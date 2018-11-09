@@ -41,9 +41,11 @@
         </form>
     </div>
     <hr>
-    <a href="{{ path('formCreateUser') }}" class="col">
-        <button type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Créer un utilisateur</button>
-    </a>
+    {% if app.session.get('user').role.id == 1 %}
+        <a href="{{ path('formCreateUser') }}" class="col">
+            <button type="button" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Créer un utilisateur</button>
+        </a>
+    {% endif %}
     <span class="col">Nombres de resultats : {{ users | length }}</span>
     <hr>
     <table class="table">
@@ -61,11 +63,16 @@
                 <td>{{ user.nom }}</td>
                 <td>{{ user.prenom }}</td>
                 <td>{{ user.role.title }}</td>
-                {% if app.session.get('user').role.id == 1 %}
-                    <td><a href="{{ path('deleteUser', {'id': user.id}) }}"><i class="fas fa-trash-alt"></i></a></td>
-                {% else %}
-                    <td>Aucunes actions disponible</td>
-                {% endif %}
+                <td>
+                    {% if app.session.get('user').role.id == 1 %}
+                        <a href="{{ path('deleteUser', {'id': user.id}) }}"><i class="fas fa-trash-alt"></i></a>
+                    {% endif %}
+                    {% if user.online %}
+                        <i class="fas fa-user"></i>
+                    {% else %}
+                        <i class="fas fa-user-times"></i>
+                    {% endif %}
+                </td>
             </tr>
         {% endfor %}
         </tbody>
