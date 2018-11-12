@@ -1,5 +1,7 @@
-{% include 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
+{% block title %}Détails Contact - Annuaire Globalis{% endblock %}
+{% block body %}
 <div class="container">
     {% if app.session.get('user').role.const == 'ROLE_ADMIN' %}
         <a href="{{ path('editContact', {'id': contact.id}) }}">
@@ -128,3 +130,4 @@
         </div>
     </div>
 </div>
+{% endblock %}

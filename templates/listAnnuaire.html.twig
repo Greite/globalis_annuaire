@@ -1,5 +1,7 @@
-{% include 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
+{% block title %}Liste Contacts - Annuaire Globalis{% endblock %}
+{% block body %}
 <div class="container">
     <div class="jumbotron">
         <form method="POST" class="container">
@@ -86,3 +88,4 @@
         {{ knp_pagination_render(contacts) }}
     </div>
 </div>
+{% endblock %}

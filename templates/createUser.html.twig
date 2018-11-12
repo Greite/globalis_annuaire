@@ -1,4 +1,7 @@
-{% include 'base.html.twig' %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation Utilisateur - Annuaire Globalis{% endblock %}
+{% block body %}
 <form action="{{ path('createUser') }}" method="POST" class="container">
     <div class="form-group">
         <label for="username">Identifiant : *</label>
@@ -41,3 +44,4 @@
         </div>
     </div>
 {% endif %}
+{% endblock %}

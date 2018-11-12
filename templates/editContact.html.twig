@@ -1,5 +1,7 @@
-{% include 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
+{% block title %}Modification Contact - Annuaire Globalis{% endblock %}
+{% block body %}
 <div class="container">
     {% if champs is defined %}
         <div class="alert alert-danger" role="alert">
@@ -154,3 +156,4 @@
         </form>
     </div>
 </div>
+{% endblock %}

@@ -1,5 +1,7 @@
-{% include 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
+{% block title %}Creation Fonction - Annuaire Globalis{% endblock %}
+{% block body %}
 <form action="{{ path('createFonction') }}" method="POST" class="container">
     <div class="form-group">
         <label for="libelle">Libellé de la fonction : *</label>
@@ -17,3 +19,4 @@
         </div>
     </div>
 {% endif %}
+{% endblock %}
