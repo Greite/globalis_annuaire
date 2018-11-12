@@ -28,6 +28,7 @@
             {% endfor %}
         </select>
     </div>
+    <input type="hidden" name="token" value="{{ csrf_token('create-user') }}" />
     <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>
 

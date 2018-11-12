@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="form-group col">
                     <label for="birthdate">Date de naissance : </label>
-                    <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="MM/JJ/AAAA" {% if contact.birthdate is not null %} value="{{ contact.birthdate | date('m/d/Y') }}" {% endif %}>
+                    <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="JJ/MM/AAAA" {% if contact.birthdate is not null %} value="{{ contact.birthdate | date('d/m/Y') }}" {% endif %}>
                 </div>
                 <div class="form-group col">
                     <label for="mobile">Téléphone mobile : </label>
@@ -87,7 +87,7 @@
                 </div>
                 <div class="form-group col">
                     <label for="societedate">Date d'entrée dans la société : </label>
-                    <input type="date" class="form-control" id="societedate" name="societedate" placeholder="MM/JJ/AAAA" {% if contact.societe.entersociete is not null %} value="{{ contact.societe.entersociete | date('m/d/Y') }}" {% endif %}>
+                    <input type="date" class="form-control" id="societedate" name="societedate" placeholder="JJ/MM/AAAA" {% if contact.societe.entersociete is not null %} value="{{ contact.societe.entersociete | date('m/d/Y') }}" {% endif %}>
                 </div>
             </div>
             <p class="lead">Adresse : *</p>

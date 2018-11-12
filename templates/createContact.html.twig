@@ -150,6 +150,7 @@
                     <textarea type="text" class="form-control" id="commentaire" name="commentaire" placeholder="Commentaire">{% if filled is not null and filled.commentaire is not null %}{{ filled.commentaire }}{% endif %}</textarea>
                 </div>
             </div>
+            <input type="hidden" name="token" value="{{ csrf_token('create-contact') }}" />
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
     </div>

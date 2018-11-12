@@ -5,6 +5,7 @@
         <label for="libelle">Libellé de la fonction : *</label>
         <input type="text" class="form-control" id="libelle" name="libelle" placeholder="Libellé de la fonction">
     </div>
+    <input type="hidden" name="token" value="{{ csrf_token('create-fonction') }}" />
     <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>
 

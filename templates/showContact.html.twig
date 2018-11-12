@@ -1,10 +1,12 @@
 {% include 'base.html.twig' %}
 
 <div class="container">
-    <a href="{{ path('editContact', {'id': contact.id}) }}">
-        <button type="button" class="btn btn-primary"><i class="fas fa-edit"></i> Modifier</button>
-    </a>
-    <hr>
+    {% if app.session.get('user').role.const == 'ROLE_ADMIN' %}
+        <a href="{{ path('editContact', {'id': contact.id}) }}">
+            <button type="button" class="btn btn-primary"><i class="fas fa-edit"></i> Modifier</button>
+        </a>
+        <hr>
+    {% endif %}
     <div class="jumbotron">
         <p class="lead">Général</p>
         <div class="row">

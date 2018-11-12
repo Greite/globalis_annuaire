@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Role
 {
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+    const ROLE_CLIENT = 'ROLE_CLIENT';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -20,6 +23,11 @@ class Role
      * @ORM\Column(type="string", length=50)
      */
     private $title;
+
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $const;
 
     public function getId(): ?int
     {
@@ -34,6 +42,18 @@ class Role
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getConst(): ?string
+    {
+        return $this->const;
+    }
+
+    public function setConst(string $const): self
+    {
+        $this->const = $const;
 
         return $this;
     }

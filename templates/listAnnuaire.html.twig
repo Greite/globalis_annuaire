@@ -6,11 +6,11 @@
             <div class="row">
                 <div class="form-group col">
                     <label for="nom">Nom : </label>
-                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom">
+                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" {% if filtres.nom is defined %} value="{{ filtres.nom }}" {% endif %}>
                 </div>
                 <div class="form-group col">
                     <label for="penom">Prénom(s) : </label>
-                    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom">
+                    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom" {% if filtres.prenom is defined %} value="{{ filtres.prenom }}" {% endif %}>
                 </div>
             </div>
             <hr class="my-4">
@@ -18,21 +18,23 @@
                 <div class="form-group col">
                     <p>Afficher les contacts archivés : </p>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="archivedContact" id="yes" value="1" checked>
+                        <input class="form-check-input" type="radio" name="archivedContact" id="yes" value="1" {% if filtres.archivedContact is defined and filtres.archivedContact == 1 %} checked {% endif %}>
                         <label class="form-check-label" for="yes">Oui</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="archivedContact" id="no" value="0">
+                        <input class="form-check-input" type="radio" name="archivedContact" id="no" value="0" {% if filtres.archivedContact is defined and filtres.archivedContact == 0 %} checked {% endif %}>
                         <label class="form-check-label" for="no">Non</label>
                     </div>
                 </div>
                 <div class="form-group col">
                     <label for="phone">Téléphone : </label>
-                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Téléphone du contact">
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Téléphone du contact" {% if filtres.phone is defined %} value="{{ filtres.phone }}" {% endif %}>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Filtrer</button>
-            <button type="reset" class="btn btn-danger"><i class="fas fa-times-circle"></i> Réinitialiser les filtres</button>
+            <a href="{{ path('listAnnuaire') }}">
+                <button type="button" class="btn btn-danger"><i class="fas fa-times-circle"></i> Réinitialiser les filtres</button>
+            </a>
         </form>
     </div>
     <hr>
