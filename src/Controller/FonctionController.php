@@ -17,8 +17,8 @@ class FonctionController extends Controller
     //Création de la fonction
     public function createFonction (request $request) {
         $session = $this->get('session');
-        if ($session) {
-            $userConnected = $session->get('user');
+        $userConnected = $session->get('user');
+        if ($userConnected) {
             if ($userConnected['role']['const'] == 'ROLE_CLIENT') {
                 return $this->redirectToRoute('listAnnuaire');
             }
@@ -44,8 +44,8 @@ class FonctionController extends Controller
     //Formulaire de création de la fonction
     public function formCreateFonction () {
         $session = $this->get('session');
-        if ($session) {
-            $userConnected = $session->get('user');
+        $userConnected = $session->get('user');
+        if ($userConnected) {
             if ($userConnected['role']['const'] == 'ROLE_CLIENT') {
                 return $this->redirectToRoute('listAnnuaire');
             }
@@ -58,8 +58,8 @@ class FonctionController extends Controller
     //Liste des fonctions
     public function listFonction (request $request) {
         $session = $this->get('session');
-        if ($session) {
-            $userConnected = $session->get('user');
+        $userConnected = $session->get('user');
+        if ($userConnected) {
             if ($userConnected['role']['const'] == 'ROLE_CLIENT') {
                 return $this->redirectToRoute('listAnnuaire');
             }
@@ -93,8 +93,8 @@ class FonctionController extends Controller
     //Archive une fonction ou l'inverse
     public function archiveFonction ($id) {
         $session = $this->get('session');
-        if ($session) {
-            $userConnected = $session->get('user');
+        $userConnected = $session->get('user');
+        if ($userConnected) {
             if ($userConnected['role']['const'] == 'ROLE_CLIENT') {
                 return $this->redirectToRoute('listAnnuaire');
             }

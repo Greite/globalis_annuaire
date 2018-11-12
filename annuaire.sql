@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 09 nov. 2018 à 15:48
+-- Généré le :  lun. 12 nov. 2018 à 12:28
 -- Version du serveur :  8.0.13
 -- Version de PHP :  7.1.16
 
@@ -75,16 +75,17 @@ CREATE TABLE `piece_jointe` (
 
 CREATE TABLE `role` (
   `id` int(11) NOT NULL,
-  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `const` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `role`
 --
 
-INSERT INTO `role` (`id`, `title`) VALUES
-(1, 'Administrateur'),
-(2, 'Client');
+INSERT INTO `role` (`id`, `title`, `const`) VALUES
+(1, 'Administrateur', 'ROLE_ADMIN'),
+(2, 'Client', 'ROLE_CLIENT');
 
 -- --------------------------------------------------------
 
@@ -137,7 +138,8 @@ INSERT INTO `user` (`id`, `role_id`, `username`, `password`, `nom`, `prenom`, `e
 (10, 2, 'd', '$2y$10$CVjBrqFxGzZs/bDcQPD2g.kdRwzWH.wxjqtO8PmoFH378qYP22auO', 'd', 'd', 'd@gmail.com', 0),
 (11, 2, 'e', '$2y$10$OVwYMA4dRb.TgjdNkoYYzuPD5Kr2Dh.KE67rb4JOiUsgoav9LIyNy', 'e', 'e', 'e@gmail.com', 0),
 (12, 2, 'f', '$2y$10$dHvnTxUPLXJMehvmtUtCe.XzE990imE/HdruwGM6.6Rg/jWirNhB.', 'f', 'f', 'f@gmail.com', 0),
-(13, 2, 'g', '$2y$10$Qat5oon97NsYzS5wQYvT9.pOqqfS56fXFL.smKF/i5fclvww5ePeO', 'g', 'g', 'g@gmail.com', 0);
+(13, 2, 'g', '$2y$10$Qat5oon97NsYzS5wQYvT9.pOqqfS56fXFL.smKF/i5fclvww5ePeO', 'g', 'g', 'g@gmail.com', 0),
+(14, 2, 'h', '$2y$10$EfhAVbtOHyBN1N/jsrECG.SJCrvSrHJ6IXnzhJuxaZDZGHsvJ2h4.', 'h', 'h', 'h@gmail.com', 0);
 
 --
 -- Index pour les tables déchargées
@@ -221,7 +223,7 @@ ALTER TABLE `societe`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Contraintes pour les tables déchargées

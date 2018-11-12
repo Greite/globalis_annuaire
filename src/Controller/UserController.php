@@ -19,8 +19,8 @@ class UserController extends Controller
     //Création du l'utilisateur
     public function createUser (request $request) {
         $session = $this->get('session');
-        if ($session) {
-            $userConnected = $session->get('user');
+        $userConnected = $session->get('user');
+        if ($userConnected) {
             if ($userConnected['role']['const'] == 'ROLE_CLIENT') {
                 return $this->redirectToRoute('listAnnuaire');
             }
@@ -75,8 +75,8 @@ class UserController extends Controller
     //Supprime un utilisateur
     public function deleteUser ($id) {
         $session = $this->get('session');
-        if ($session) {
-            $userConnected = $session->get('user');
+        $userConnected = $session->get('user');
+        if ($userConnected) {
             if ($userConnected['role']['const'] == 'ROLE_CLIENT') {
                 return $this->redirectToRoute('listAnnuaire');
             }
@@ -94,8 +94,8 @@ class UserController extends Controller
     //Formulaire de création de l'utilisateur
     public function formCreateUser () {
         $session = $this->get('session');
-        if ($session) {
-            $userConnected = $session->get('user');
+        $userConnected = $session->get('user');
+        if ($userConnected) {
             if ($userConnected['role']['const'] == 'ROLE_CLIENT') {
                 return $this->redirectToRoute('listAnnuaire');
             }
@@ -111,8 +111,8 @@ class UserController extends Controller
     //Liste des utilisateurs
     public function listUser (request $request) {
         $session = $this->get('session');
-        if ($session) {
-            $userConnected = $session->get('user');
+        $userConnected = $session->get('user');
+        if ($userConnected) {
             if ($userConnected['role']['const'] == 'ROLE_CLIENT') {
                 return $this->redirectToRoute('listAnnuaire');
             }

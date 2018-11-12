@@ -20,8 +20,8 @@ class AnnuaireController extends Controller
     //Création d'un contact
     public function createContact (request $request) {
         $session = $this->get('session');
-        if ($session) {
-            $userConnected = $session->get('user');
+        $userConnected = $session->get('user');
+        if ($userConnected) {
             if ($userConnected['role']['const'] == 'ROLE_CLIENT') {
                 return $this->redirectToRoute('listAnnuaire');
             }
@@ -145,8 +145,8 @@ class AnnuaireController extends Controller
     //Archive un contact ou l'inverse
     public function archiveContact ($id) {
         $session = $this->get('session');
-        if ($session) {
-            $userConnected = $session->get('user');
+        $userConnected = $session->get('user');
+        if ($userConnected) {
             if ($userConnected['role']['const'] == 'ROLE_CLIENT') {
                 return $this->redirectToRoute('listAnnuaire');
             }
@@ -207,8 +207,8 @@ class AnnuaireController extends Controller
     //Edition d'un contact
     public function editContact (request $request, $id) {
         $session = $this->get('session');
-        if ($session) {
-            $userConnected = $session->get('user');
+        $userConnected = $session->get('user');
+        if ($userConnected) {
             if ($userConnected['role']['const'] == 'ROLE_CLIENT') {
                 return $this->redirectToRoute('listAnnuaire');
             }
@@ -312,8 +312,8 @@ class AnnuaireController extends Controller
     //Formulaire de création contact
     public function formCreateContact () {
         $session = $this->get('session');
-        if ($session) {
-            $userConnected = $session->get('user');
+        $userConnected = $session->get('user');
+        if ($userConnected) {
             if ($userConnected['role']['const'] == 'ROLE_CLIENT') {
                 return $this->redirectToRoute('listAnnuaire');
             }
