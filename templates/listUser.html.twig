@@ -38,6 +38,11 @@
                     </select>
                 </div>
             </div>
+            {% if app.request.query %}
+                {% for key, value in app.request.query %}
+                    <input type="hidden" name="{{ key }}" value="{{ value }}">
+                {% endfor %}
+            {% endif %}
             <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Filtrer</button>
             <a href="{{ path('listUser') }}">
                 <button type="button" class="btn btn-danger"><i class="fas fa-times-circle"></i> Réinitialiser les filtres</button>
@@ -55,8 +60,24 @@
     <table class="table">
         <thead class="thead-light">
         <tr>
-            <th scope="col">Nom</th>
-            <th scope="col">Prénom</th>
+            {% if app.request.query.get('col') == 'nom' %}
+                {% if app.request.query.get('order') == 'DESC' %}
+                    <th scope="col">Nom <a href="{{ path('listUser', {'col': 'nom', 'order': 'ASC'}) }}"><i class="fas fa-arrow-up"></i></a></th>
+                {% else %}
+                    <th scope="col">Nom <a href="{{ path('listUser', {'col': 'nom', 'order': 'DESC'}) }}"><i class="fas fa-arrow-down"></i></a></th>
+                {% endif %}
+            {% else %}
+                <th scope="col">Nom <a href="{{ path('listUser', {'col': 'nom', 'order': 'ASC'}) }}"><i class="fas fa-arrow-up"></i></a></th>
+            {% endif %}
+            {% if app.request.query.get('col') == 'prenom' %}
+                {% if app.request.query.get('order') == 'DESC' %}
+                    <th scope="col">Prénom <a href="{{ path('listUser', {'col': 'prenom', 'order': 'ASC'}) }}"><i class="fas fa-arrow-up"></i></a></th>
+                {% else %}
+                    <th scope="col">Prénom <a href="{{ path('listUser', {'col': 'prenom', 'order': 'DESC'}) }}"><i class="fas fa-arrow-down"></i></a></th>
+                {% endif %}
+            {% else %}
+                <th scope="col">Prénom <a href="{{ path('listUser', {'col': 'prenom', 'order': 'ASC'}) }}"><i class="fas fa-arrow-up"></i></a></th>
+            {% endif %}
             <th scope="col">Rôle</th>
             <th scope="col">Actions</th>
         </tr>

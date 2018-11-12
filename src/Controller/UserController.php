@@ -136,10 +136,12 @@ class UserController extends Controller
                 $qb->setParameter('prenom', '%'.$request->get('prenom').'%');
                 $filtres['prenom'] = $request->get('prenom');
             }
-            if (!$request->get('activeUser')) {
-                $qb->andWhere('u.online = 0');
+            if ($request->get('activeUser') != null) {
+                $filtres['activeUser'] = $request->get('activeUser');
+                if (!$request->get('activeUser')) {
+                    $qb->andWhere('u.online = 0');
+                }
             }
-            $filtres['activeUser'] = $request->get('activeUser');
             if ($request->get('role') != '') {
                 $roleRepository = $manager->getRepository('App:Role');
                 $role = $roleRepository->findOneById($request->get('role'));
@@ -147,10 +149,19 @@ class UserController extends Controller
                 $qb->setParameter('role', $role);
                 $filtres['role'] = $request->get('role');
             }
+            if ($request->get('col') != null && $request->get('order') != null){
+                $qb->orderBy('u.'.$request->get('col'), $request->get('order'));
+                $request->query->set('col', $request->get('col'));
+                $request->query->set('order', $request->get('order'));
+            }
             $query = $qb->getQuery();
             $users = $query->getResult();
         }else {
-            $users = $repository->findAll();
+            if ($request->query->get('col') != null && $request->query->get('order') != null){
+                $users = $repository->findBy(array(), array($request->query->get('col') => $request->query->get('order')));
+            }else {
+                $users = $repository->findAll();
+            }
         }
         $count = count($users);
         $paginator  = $this->get('knp_paginator');

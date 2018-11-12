@@ -73,19 +73,30 @@ class FonctionController extends Controller
             $archived = $request->get('archived');
             $title = $request->get('libelle');
             $qb = $repository->createQueryBuilder('f');
-            if (!$archived) {
-                $qb->andWhere('f.archived = 0');
+            if ($archived != null) {
+                $filtres['archived'] = $archived;
+                if (!$archived) {
+                    $qb->andWhere('f.archived = 0');
+                }
             }
-            $filtres['archived'] = $archived;
             if ($title != '') {
                 $qb->andWhere('f.title LIKE :title');
                 $qb->setParameter('title', '%'.$title.'%');
                 $filtres['title'] = $title;
             }
+            if ($request->get('col') != null && $request->get('order') != null){
+                $qb->orderBy('f.'.$request->get('col'), $request->get('order'));
+                $request->query->set('col', $request->get('col'));
+                $request->query->set('order', $request->get('order'));
+            }
             $query = $qb->getQuery();
             $fonctions = $query->getResult();
         }else{
-            $fonctions = $repository->findAll();
+            if ($request->query->get('col') != null && $request->query->get('order') != null){
+                $fonctions = $repository->findBy(array(), array($request->query->get('col') => $request->query->get('order')));
+            }else {
+                $fonctions = $repository->findAll();
+            }
         }
         $count = count($fonctions);
         $paginator  = $this->get('knp_paginator');

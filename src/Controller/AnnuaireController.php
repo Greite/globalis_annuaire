@@ -179,19 +179,30 @@ class AnnuaireController extends Controller
                 $qb->setParameter('prenom', '%'.$request->get('prenom').'%');
                 $filtres['prenom'] = $request->get('prenom');
             }
-            if (!$request->get('archivedContact')) {
-                $qb->andWhere('c.archived = 0');
+            if ($request->get('archivedContact') != null) {
+                $filtres['archivedContact'] = $request->get('archivedContact');
+                if (!$request->get('archivedContact')) {
+                    $qb->andWhere('c.archived = 0');
+                }
             }
-            $filtres['archivedContact'] = $request->get('archivedContact');
             if ($request->get('phone') != '') {
                 $qb->andWhere('c.telephone LIKE :telephone');
                 $qb->setParameter('telephone', '%'.$request->get('phone').'%');
                 $filtres['phone'] = $request->get('phone');
             }
+            if ($request->get('col') != null && $request->get('order') != null){
+                $qb->orderBy('c.'.$request->get('col'), $request->get('order'));
+                $request->query->set('col', $request->get('col'));
+                $request->query->set('order', $request->get('order'));
+            }
             $query = $qb->getQuery();
             $contacts = $query->getResult();
         }else {
-            $contacts = $repository->findAll();
+            if ($request->query->get('col') != null && $request->query->get('order') != null){
+                $contacts = $repository->findBy(array(), array($request->query->get('col') => $request->query->get('order')));
+            }else {
+                $contacts = $repository->findAll();
+            }
         }
         $count = count($contacts);
         $paginator  = $this->get('knp_paginator');
