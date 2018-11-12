@@ -152,7 +152,9 @@ class UserController extends Controller
         }else {
             $users = $repository->findAll();
         }
-        return $this->render('listUser.html.twig', array('users' => $users, 'roles' => $roles, 'filtres' => $filtres));
+        $paginator  = $this->get('knp_paginator');
+        $appointments = $paginator->paginate($users, $request->query->getInt('page', 1), 10);
+        return $this->render('listUser.html.twig', array('users' => $appointments, 'roles' => $roles, 'filtres' => $filtres));
     }
 
     //Formulaire connexion

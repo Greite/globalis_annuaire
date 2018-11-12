@@ -87,7 +87,9 @@ class FonctionController extends Controller
         }else{
             $fonctions = $repository->findAll();
         }
-        return $this->render('listFonction.html.twig', array('fonctions' => $fonctions, 'filtres' => $filtres));
+        $paginator  = $this->get('knp_paginator');
+        $appointments = $paginator->paginate($fonctions, $request->query->getInt('page', 1), 10);
+        return $this->render('listFonction.html.twig', array('fonctions' => $appointments, 'filtres' => $filtres));
     }
 
     //Archive une fonction ou l'inverse

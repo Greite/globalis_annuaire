@@ -193,7 +193,9 @@ class AnnuaireController extends Controller
         }else {
             $contacts = $repository->findAll();
         }
-        return $this->render('listAnnuaire.html.twig', array('contacts' => $contacts, 'filtres' => $filtres));
+        $paginator  = $this->get('knp_paginator');
+        $appointments = $paginator->paginate($contacts, $request->query->getInt('page', 1), 10);
+        return $this->render('listAnnuaire.html.twig', array('contacts' => $appointments, 'filtres' => $filtres));
     }
 
     //Détails d'un contact
