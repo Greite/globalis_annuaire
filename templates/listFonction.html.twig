@@ -4,7 +4,7 @@
 {% block body %}
 <div class="container">
     <div class="jumbotron">
-        <form method="POST" action="{{ path('listFonction') }}" class="container">
+        <form method="GET" action="{{ path('listFonction') }}" class="container">
             <div class="row">
                 <div class="form-group col">
                     <label for="libelle">Libellé : </label>
@@ -46,12 +46,12 @@
         <tr>
             {% if app.request.query.get('col') == 'title' %}
                 {% if app.request.query.get('order') == 'DESC' %}
-                    <th scope="col">Libellé <a href="{{ path('listFonction', {'col': 'title', 'order': 'ASC'}) }}"><i class="fas fa-arrow-up"></i></a></th>
+                    <th scope="col">Libellé <a href="{{ path('listFonction', {'col': 'title', 'order': 'ASC', 'libelle': app.request.query.get('libelle')}) }}"><i class="fas fa-arrow-up"></i></a></th>
                 {% else %}
-                    <th scope="col">Libellé <a href="{{ path('listFonction', {'col': 'title', 'order': 'DESC'}) }}"><i class="fas fa-arrow-down"></i></a></th>
+                    <th scope="col">Libellé <a href="{{ path('listFonction', {'col': 'title', 'order': 'DESC', 'libelle': app.request.query.get('libelle')}) }}"><i class="fas fa-arrow-down"></i></a></th>
                 {% endif %}
             {% else %}
-                <th scope="col">Libellé <a href="{{ path('listFonction', {'col': 'title', 'order': 'ASC'}) }}"><i class="fas fa-arrow-up"></i></a></th>
+                <th scope="col">Libellé <a href="{{ path('listFonction', {'col': 'title', 'order': 'ASC', 'libelle': app.request.query.get('libelle')}) }}"><i class="fas fa-arrow-up"></i></a></th>
             {% endif %}
             <th scope="col">Action</th>
         </tr>

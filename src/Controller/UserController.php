@@ -124,35 +124,33 @@ class UserController extends Controller
         $roleRepository = $manager->getRepository('App:Role');
         $roles = $roleRepository->findAll();
         $filtres = array();
-        if ($request->request->all() != []) {
+        if ($request->query->all() != []) {
             $qb = $repository->createQueryBuilder('u');
-            if ($request->get('nom') != '') {
+            if ($request->query->get('nom') != '') {
                 $qb->andWhere('u.nom LIKE :nom');
-                $qb->setParameter('nom', '%'.$request->get('nom').'%');
-                $filtres['nom'] = $request->get('nom');
+                $qb->setParameter('nom', '%'.$request->query->get('nom').'%');
+                $filtres['nom'] = $request->query->get('nom');
             }
-            if ($request->get('prenom') != '') {
+            if ($request->query->get('prenom') != '') {
                 $qb->andWhere('u.prenom LIKE :prenom');
-                $qb->setParameter('prenom', '%'.$request->get('prenom').'%');
-                $filtres['prenom'] = $request->get('prenom');
+                $qb->setParameter('prenom', '%'.$request->query->get('prenom').'%');
+                $filtres['prenom'] = $request->query->get('prenom');
             }
-            if ($request->get('activeUser') != null) {
-                $filtres['activeUser'] = $request->get('activeUser');
-                if (!$request->get('activeUser')) {
+            if ($request->query->get('activeUser') != null) {
+                $filtres['activeUser'] = $request->query->get('activeUser');
+                if (!$request->query->get('activeUser')) {
                     $qb->andWhere('u.online = 0');
                 }
             }
-            if ($request->get('role') != '') {
+            if ($request->query->get('role') != '') {
                 $roleRepository = $manager->getRepository('App:Role');
-                $role = $roleRepository->findOneById($request->get('role'));
+                $role = $roleRepository->findOneById($request->query->get('role'));
                 $qb->andWhere('u.role = :role');
                 $qb->setParameter('role', $role);
-                $filtres['role'] = $request->get('role');
+                $filtres['role'] = $request->query->get('role');
             }
-            if ($request->get('col') != null && $request->get('order') != null){
-                $qb->orderBy('u.'.$request->get('col'), $request->get('order'));
-                $request->query->set('col', $request->get('col'));
-                $request->query->set('order', $request->get('order'));
+            if ($request->query->get('col') != null && $request->query->get('order') != null){
+                $qb->orderBy('u.'.$request->query->get('col'), $request->query->get('order'));
             }
             $query = $qb->getQuery();
             $users = $query->getResult();

@@ -69,9 +69,9 @@ class FonctionController extends Controller
         $manager = $this->get('doctrine.orm.entity_manager');
         $repository = $manager->getRepository('App:Fonction');
         $filtres = array();
-        if ($request->request->all() != []) {
-            $archived = $request->get('archived');
-            $title = $request->get('libelle');
+        if ($request->query->all() != []) {
+            $archived = $request->query->get('archived');
+            $title = $request->query->get('libelle');
             $qb = $repository->createQueryBuilder('f');
             if ($archived != null) {
                 $filtres['archived'] = $archived;
@@ -84,10 +84,8 @@ class FonctionController extends Controller
                 $qb->setParameter('title', '%'.$title.'%');
                 $filtres['title'] = $title;
             }
-            if ($request->get('col') != null && $request->get('order') != null){
-                $qb->orderBy('f.'.$request->get('col'), $request->get('order'));
-                $request->query->set('col', $request->get('col'));
-                $request->query->set('order', $request->get('order'));
+            if ($request->query->get('col') != null && $request->query->get('order') != null){
+                $qb->orderBy('f.'.$request->query->get('col'), $request->query->get('order'));
             }
             $query = $qb->getQuery();
             $fonctions = $query->getResult();

@@ -167,33 +167,31 @@ class AnnuaireController extends Controller
         $manager = $this->get('doctrine.orm.entity_manager');
         $repository = $manager->getRepository('App:Contact');
         $filtres = array();
-        if ($request->request->all() != []) {
+        if ($request->query->all() != []) {
             $qb = $repository->createQueryBuilder('c');
-            if ($request->get('nom') != '') {
+            if ($request->query->get('nom') != '') {
                 $qb->andWhere('c.nom LIKE :nom');
-                $qb->setParameter('nom', '%'.$request->get('nom').'%');
-                $filtres['nom'] = $request->get('nom');
+                $qb->setParameter('nom', '%'.$request->query->get('nom').'%');
+                $filtres['nom'] = $request->query->get('nom');
             }
-            if ($request->get('prenom') != '') {
+            if ($request->query->get('prenom') != '') {
                 $qb->andWhere('c.prenom LIKE :prenom');
-                $qb->setParameter('prenom', '%'.$request->get('prenom').'%');
-                $filtres['prenom'] = $request->get('prenom');
+                $qb->setParameter('prenom', '%'.$request->query->get('prenom').'%');
+                $filtres['prenom'] = $request->query->get('prenom');
             }
-            if ($request->get('archivedContact') != null) {
-                $filtres['archivedContact'] = $request->get('archivedContact');
-                if (!$request->get('archivedContact')) {
+            if ($request->query->get('archivedContact') != null) {
+                $filtres['archivedContact'] = $request->query->get('archivedContact');
+                if (!$request->query->get('archivedContact')) {
                     $qb->andWhere('c.archived = 0');
                 }
             }
-            if ($request->get('phone') != '') {
+            if ($request->query->get('phone') != '') {
                 $qb->andWhere('c.telephone LIKE :telephone');
                 $qb->setParameter('telephone', '%'.$request->get('phone').'%');
-                $filtres['phone'] = $request->get('phone');
+                $filtres['phone'] = $request->query->get('phone');
             }
-            if ($request->get('col') != null && $request->get('order') != null){
-                $qb->orderBy('c.'.$request->get('col'), $request->get('order'));
-                $request->query->set('col', $request->get('col'));
-                $request->query->set('order', $request->get('order'));
+            if ($request->query->get('col') != null && $request->query->get('order') != null){
+                $qb->orderBy('c.'.$request->query->get('col'), $request->query->get('order'));
             }
             $query = $qb->getQuery();
             $contacts = $query->getResult();

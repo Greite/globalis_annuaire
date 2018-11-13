@@ -4,7 +4,7 @@
 {% block body %}
 <div class="container">
     <div class="jumbotron">
-        <form method="POST" class="container">
+        <form method="GET" class="container">
             <div class="row">
                 <div class="form-group col">
                     <label for="nom">Nom : </label>
@@ -57,30 +57,30 @@
         <tr>
             {% if app.request.query.get('col') == 'societe' %}
                 {% if app.request.query.get('order') == 'DESC' %}
-                    <th scope="col">Société <a href="{{ path('listAnnuaire', {'col': 'societe', 'order': 'ASC'}) }}"><i class="fas fa-arrow-up"></i></a></th>
+                    <th scope="col">Société <a href="{{ path('listAnnuaire', {'col': 'societe', 'order': 'ASC', 'nom': app.request.query.get('nom'), 'prenom': app.request.query.get('prenom'), 'archivedContact': app.request.query.get('archivedContact'), 'phone': app.request.query.get('phone')}) }}"><i class="fas fa-arrow-up"></i></a></th>
                 {% else %}
-                    <th scope="col">Société <a href="{{ path('listAnnuaire', {'col': 'societe', 'order': 'DESC'}) }}"><i class="fas fa-arrow-down"></i></a></th>
+                    <th scope="col">Société <a href="{{ path('listAnnuaire', {'col': 'societe', 'order': 'DESC', 'nom': app.request.query.get('nom'), 'prenom': app.request.query.get('prenom'), 'archivedContact': app.request.query.get('archivedContact'), 'phone': app.request.query.get('phone')}) }}"><i class="fas fa-arrow-down"></i></a></th>
                 {% endif %}
             {% else %}
-                <th scope="col">Société <a href="{{ path('listAnnuaire', {'col': 'societe', 'order': 'ASC'}) }}"><i class="fas fa-arrow-up"></i></a></th>
+                <th scope="col">Société <a href="{{ path('listAnnuaire', {'col': 'societe', 'order': 'ASC', 'nom': app.request.query.get('nom'), 'prenom': app.request.query.get('prenom'), 'archivedContact': app.request.query.get('archivedContact'), 'phone': app.request.query.get('phone')}) }}"><i class="fas fa-arrow-up"></i></a></th>
             {% endif %}
             {% if app.request.query.get('col') == 'nom' %}
                 {% if app.request.query.get('order') == 'DESC' %}
-                    <th scope="col">Nom <a href="{{ path('listAnnuaire', {'col': 'nom', 'order': 'ASC'}) }}"><i class="fas fa-arrow-up"></i></a></th>
+                    <th scope="col">Nom <a href="{{ path('listAnnuaire', {'col': 'nom', 'order': 'ASC', 'nom': app.request.query.get('nom'), 'prenom': app.request.query.get('prenom'), 'archivedContact': app.request.query.get('archivedContact'), 'phone': app.request.query.get('phone')}) }}"><i class="fas fa-arrow-up"></i></a></th>
                 {% else %}
-                    <th scope="col">Nom <a href="{{ path('listAnnuaire', {'col': 'nom', 'order': 'DESC'}) }}"><i class="fas fa-arrow-down"></i></a></th>
+                    <th scope="col">Nom <a href="{{ path('listAnnuaire', {'col': 'nom', 'order': 'DESC', 'nom': app.request.query.get('nom'), 'prenom': app.request.query.get('prenom'), 'archivedContact': app.request.query.get('archivedContact'), 'phone': app.request.query.get('phone')}) }}"><i class="fas fa-arrow-down"></i></a></th>
                 {% endif %}
             {% else %}
-                <th scope="col">Nom <a href="{{ path('listAnnuaire', {'col': 'nom', 'order': 'ASC'}) }}"><i class="fas fa-arrow-up"></i></a></th>
+                <th scope="col">Nom <a href="{{ path('listAnnuaire', {'col': 'nom', 'order': 'ASC', 'nom': app.request.query.get('nom'), 'prenom': app.request.query.get('prenom'), 'archivedContact': app.request.query.get('archivedContact'), 'phone': app.request.query.get('phone')}) }}"><i class="fas fa-arrow-up"></i></a></th>
             {% endif %}
             {% if app.request.query.get('col') == 'prenom' %}
                 {% if app.request.query.get('order') == 'DESC' %}
-                    <th scope="col">Prénom <a href="{{ path('listAnnuaire', {'col': 'prenom', 'order': 'ASC'}) }}"><i class="fas fa-arrow-up"></i></a></th>
+                    <th scope="col">Prénom <a href="{{ path('listAnnuaire', {'col': 'prenom', 'order': 'ASC', 'nom': app.request.query.get('nom'), 'prenom': app.request.query.get('prenom'), 'archivedContact': app.request.query.get('archivedContact'), 'phone': app.request.query.get('phone')}) }}"><i class="fas fa-arrow-up"></i></a></th>
                 {% else %}
-                    <th scope="col">Prénom <a href="{{ path('listAnnuaire', {'col': 'prenom', 'order': 'DESC'}) }}"><i class="fas fa-arrow-down"></i></a></th>
+                    <th scope="col">Prénom <a href="{{ path('listAnnuaire', {'col': 'prenom', 'order': 'DESC', 'nom': app.request.query.get('nom'), 'prenom': app.request.query.get('prenom'), 'archivedContact': app.request.query.get('archivedContact'), 'phone': app.request.query.get('phone')}) }}"><i class="fas fa-arrow-down"></i></a></th>
                 {% endif %}
             {% else %}
-                <th scope="col">Prénom <a href="{{ path('listAnnuaire', {'col': 'prenom', 'order': 'ASC'}) }}"><i class="fas fa-arrow-up"></i></a></th>
+                <th scope="col">Prénom <a href="{{ path('listAnnuaire', {'col': 'prenom', 'order': 'ASC', 'nom': app.request.query.get('nom'), 'prenom': app.request.query.get('prenom'), 'archivedContact': app.request.query.get('archivedContact'), 'phone': app.request.query.get('phone')}) }}"><i class="fas fa-arrow-up"></i></a></th>
             {% endif %}
             <th scope="col">Téléphone</th>
             <th scope="col">Actions</th>
