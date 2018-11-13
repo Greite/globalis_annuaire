@@ -38,11 +38,6 @@
                     </select>
                 </div>
             </div>
-            {% if app.request.query %}
-                {% for key, value in app.request.query %}
-                    <input type="hidden" name="{{ key }}" value="{{ value }}">
-                {% endfor %}
-            {% endif %}
             <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Filtrer</button>
             <a href="{{ path('listUser') }}">
                 <button type="button" class="btn btn-danger"><i class="fas fa-times-circle"></i> Réinitialiser les filtres</button>
